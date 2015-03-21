@@ -1,29 +1,39 @@
 '''
 Created on Mar 14, 2015
 
-@author: Dead Robot Society
+@author: Botball
 '''
-from kovan import msleep
-from kovan import motor
-from kovan import ao
 
-import os
-import sys
 
-# set print to unbuffered
-sys.stdout = os.fdopen(sys.stdout.fileno(),'w',0)
+
+import actions as act
+
+
+
+
+"""
+TRY HAVING THE ROBOT RUN STRAIGHT FOR 5 SECONDS
+start robot with clapper facing away from ping pong balls, right tire on pencil mark
+"""
+
 
 def main() :
-    print "Starting...."
-    testMotors()
-    print "Finished"
-
-def testMotors() :
-    motor(1,100)
-    motor(3,100)
-    msleep(500)
-    ao()
-
+    act.init()
+    #act.testRun() -- tests servo values
+    #act.printSize() 
+    act.eat() 
+    act.cameraSort()
+    # act.filter()
+    # act.filter()
+    # drive.withStop(100, 100, 0.5)
+    # drive.withStop(-100,-100, 0.5)
+    #act.DEBUG()
+    #act.getOutOfStartBox()
+    #act.grabFirstPile()
+    #act.getTribbles()
+    #act.testDrive()
+    #sen.cameraTrack()
+ 
 
 if __name__ == "__main__":
     main()
