@@ -50,7 +50,7 @@ sorterCenter = 930
 
 # kicker positions
 kickerBack = 0
-kickerReady = 0
+kickerReady = 700
 kickerOut = 1800
 
 #color channels    0 = green     1 = red
