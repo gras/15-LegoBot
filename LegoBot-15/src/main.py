@@ -1,7 +1,7 @@
 '''
 Created on Mar 14, 2015
 
-@author: botball
+@author: Dead Robot Society
 '''
 from kovan import msleep
 from kovan import motor
