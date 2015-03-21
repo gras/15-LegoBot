@@ -1,7 +1,7 @@
 '''
 Created on Mar 15, 2015
 
-@author: Botball
+@author: Dead Robot Society
 '''
 import time 
 import kovan as link

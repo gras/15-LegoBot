@@ -1,7 +1,7 @@
 '''
 Created on Mar 14, 2015
 
-@author: Botball
+@author: Dead Robot Society
 '''
 
 

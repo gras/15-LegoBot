@@ -1,7 +1,7 @@
 '''
 Created on Mar 15, 2015
 
-@author: Botball
+@author: Dead Robot Society
 '''
 # servo ports
 kicker = 3

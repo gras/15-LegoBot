@@ -1,3 +1,8 @@
+'''
+Created on Mar 14, 2015
+
+@author: Dead Robot Society
+'''
 
 import kovan as link
 import constants as c
