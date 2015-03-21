@@ -21,7 +21,7 @@ def init() :
     print "starting legoBot"
     link.enable_servos()
     time.sleep (1.0)
-    link.camera_open()
+    link.camera_open() 
     servo.testServo()
     #link.camera_load_config(red-green)
     #servo.moveClapper( c.clapperOpen )
