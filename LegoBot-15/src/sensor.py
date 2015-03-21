@@ -25,6 +25,7 @@ def cameraTest():
     print "green area", I, area
     return area    
     
+
 def cameraTrack() :
     print "cameraTrack"
     link.camera_update()
@@ -51,5 +52,4 @@ def cameraTrack() :
         print "nothing found"
          
     servo.moveSorter( c.sorterCenter)
-    servo.moveKicker( c.kickerBack )
     servo.moveKicker( c.kickerReady )

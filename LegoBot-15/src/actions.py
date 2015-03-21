@@ -8,14 +8,12 @@ import os
 import sys
 
 import kovan as link
- 
+
 import constants as c 
 import drive 
 import servo
 import sensor
 import time
-from constants import clapperOpen, clapperClosed, clapperWide, clapperParallel,\
-    blobSize
 
 def init() :
     # set print to unbuffered
@@ -24,25 +22,7 @@ def init() :
     link.enable_servos()
     time.sleep (1.0)
     link.camera_open()
-    print "testing clapper"
-    link.set_servo_position(c.clapper, c.clapperOpen)
-    time.sleep(1.0)
-    link.set_servo_position(c.clapper, c.clapperParallel)
-    time.sleep(1.0)
-    print "testing sorter"
-    link.set_servo_position(c.sorter, c.sorterLeft)
-    time.sleep(1.0)
-    link.set_servo_position(c.sorter, c.sorterRight)
-    time.sleep(1.0)
-    link.set_servo_position(c.sorter, c.sorterCenter)
-    time.sleep(1.0)
-    print "testing kicker"
-    link.set_servo_position(c.kicker, c.kickerBack)
-    time.sleep(1.0)
-    link.set_servo_position(c.kicker, c.kickerOut)
-    time.sleep(1.0)
-    link.set_servo_position(c.kicker, c.kickerReady)
-    time.sleep(1.0)
+    servo.testServo()
     #link.camera_load_config(red-green)
     #servo.moveClapper( c.clapperOpen )
     #servo.moveSorter( c.sorterCenter )
@@ -55,9 +35,9 @@ def printSize():
         print sensor.cameraTest()
 
 def cameraSort():
-    servo.moveClapper(clapperParallel, 10)
+    servo.moveClapper(c.clapperParallel, 10)
     while sensor.cameraTest() <= c.blobSize:
-        drive.noStop(100, 100, .1)
+        drive.noStop(75, 75, .1)
     drive.withStop(0, 0, 0)
     sensor.cameraTrack()
     
@@ -78,9 +58,9 @@ def eat() :
     
 def filter() :
     # drive.withStop(100, 100, 0.5)
-    servo.moveClapper(clapperOpen, 6)
+    servo.moveClapper(c.clapperOpen, 6)
     drive.withStop(100, 100, 0.5)
-    servo.moveClapper(clapperClosed, 6)
+    servo.moveClapper(c.clapperClosed, 6)
 
 def testRun() :
     drive.withStop(100, 100, 1)

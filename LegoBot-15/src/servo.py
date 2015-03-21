@@ -7,6 +7,25 @@ import time
 import kovan as link
 import constants as c
 
+def testServo():
+    print "testing clapper"
+    link.set_servo_position(c.clapper, c.clapperOpen)
+    time.sleep(1.0)
+    link.set_servo_position(c.clapper, c.clapperParallel)
+    time.sleep(1.0)
+    print "testing sorter"
+    link.set_servo_position(c.sorter, c.sorterLeft)
+    time.sleep(1.0)
+    link.set_servo_position(c.sorter, c.sorterRight)
+    time.sleep(1.0)
+    link.set_servo_position(c.sorter, c.sorterCenter)
+    time.sleep(1.0)
+    print "testing kicker"
+    link.set_servo_position(c.kicker, c.kickerOut)
+    time.sleep(1.0)
+    link.set_servo_position(c.kicker, c.kickerReady)
+    time.sleep(1.0)
+
 def moveClapper( endPos, speed=10 ):
     moveServo( c.clapper, endPos, speed )
 
