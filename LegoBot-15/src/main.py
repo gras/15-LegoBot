@@ -22,7 +22,7 @@ def main() :
     #act.testRun() -- tests servo values
     #act.printSize() 
     act.eat() 
-    for i in range(3):
+    for i in range(4):
         act.cameraSort()
         
     # act.filter()

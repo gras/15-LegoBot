@@ -32,12 +32,19 @@ def init() :
 
 def printSize():
     for I in range(20):
-        print sensor.cameraTest()
+        print sensor.getLargestArea()
 
 def cameraSort():
+    drive.noStop(75, 75, 0.1)
     servo.moveClapper(c.clapperParallel, 10)
-    while sensor.cameraTest() <= c.blobSize:
-        drive.noStop(75, 75, .1)
+    count = 0
+    
+    while sensor.getLargestArea() < c.blobSize:
+        count = count+1
+        if count >3:
+            print "break"
+            break  
+    print "stop"
     drive.withStop(0, 0, 0)
     sensor.cameraTrack()
     
@@ -80,10 +87,10 @@ def sort() :
     #thread tid = link.thread_create(sensor.cameraTrack)
     #link.thread_start()
     #drive.withStop(100, 100, 1.0)
-    sensor.cameraTest()
+    sensor.getLargestArea()
     
 def printBlobSize():
-    sensor.cameraTest()
+    sensor.getLargestArea()
     
     
 def getTribbles() :   

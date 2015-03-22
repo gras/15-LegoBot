@@ -9,7 +9,7 @@ import constants as c
 import servo
 import time
 
-def cameraTest():
+def getLargestArea():
     link.camera_update()
     link.camera_update()
     I = 0
@@ -17,14 +17,14 @@ def cameraTest():
     #    I+=1
     link.camera_update()
         #print I
-    area = link.get_object_area(c.chanRed,0)
-    print "red area", I, area
-    if area > 0 :
-        return area
-    area = link.get_object_area(c.chanGreen,0)
-    print "green area", I, area
-    return area    
-    
+    redArea = link.get_object_area(c.chanRed,0)
+    print "red area", I, redArea
+    greenArea = link.get_object_area(c.chanGreen,0)
+    print "green area", I, greenArea
+    if redArea > greenArea :
+        return redArea
+    else :
+        return greenArea
 
 def cameraTrack() :
     print "cameraTrack"
