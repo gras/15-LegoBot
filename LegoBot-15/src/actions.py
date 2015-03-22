@@ -27,7 +27,9 @@ def init() :
     #servo.moveClapper( c.clapperOpen )
     #servo.moveSorter( c.sorterCenter )
     #servo.moveKicker( c.kickerReady )
+    
     print "We did it!!!"
+
     # wait for light
 
 def printSize():
@@ -42,23 +44,34 @@ def cameraSort():
     while sensor.getLargestArea() < c.blobSize:
         count = count+1
         if count >3:
-            print "break"
-            break  
+            #print "break"
+            #break  
+            count = 0
+            servo.moveClapper (c.clapperOpen, 20)
+            drive.withStop (50, 0, 0.5)
+            servo.moveClapper (c.clapperParallel, 5)
+            drive.withStop (0, 50, 1)
+            drive.withStop (-75, -75, .75)
+            drive.withStop (75, 75, 1)
     print "stop"
     drive.withStop(0, 0, 0)
     sensor.cameraTrack()
     
 def getOutOfStartBox() :
-    drive.withStop( -50, -100, 1 )
-    drive.withStop( -100, -10, 1)
-    drive.withStop(-60, 60, .2 )
-    drive.withStop(20, 100, 3 )
-    drive.withStop(70, 100, 1 )
-    #servo.moveClapper( c.clapperClosed )
-
+    drive.withStop( 75, 75, 6 )
+    '''drive.withStop( 75, -20, 2 )
+    servo.moveClapper (c.clapperDrive, 20)
+    drive.withStop( 75, 75, .5 )
+    drive.withStop( 75, -75, .55 )
+    drive.withStop( 75, 80, .75 )
+    drive.withStop( 15, 75, 1.5 )
+    drive.withStop( 75, 75, 4 )'''
+    
+    
+    
 def eat() :
     servo.moveClapper(c.clapperOpen, 6)
-    drive.noStop(75, 75, 1.5)
+    drive.noStop(75, 75, .4)
     #servo.moveClapper(c.clapperParallel, 10)
     #drive.withStop (0,0,0)
     #drive.withStop(100, 100, 0.5)

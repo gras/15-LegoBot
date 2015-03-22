@@ -17,6 +17,7 @@ cloneSwitch = 0
 
 # servo positions
 clapperWide = 0
+clapperDrive = 150
 clapperOpen = 400 #375
 clapperParallel = 750
 clapperClosed = 700
@@ -25,7 +26,7 @@ clapperTight = 915
 # sorter positions
 sorterLeft = 0
 sorterRight = 2047
-sorterCenter = 780 #890
+sorterCenter = 840 #890
 
 # kicker positions
 kickerBack = 400 #650
