@@ -51,27 +51,35 @@ def cameraSort():
             drive.withStop (50, 0, 0.5)
             servo.moveClapper (c.clapperParallel, 5)
             drive.withStop (0, 50, 1)
-            drive.withStop (-75, -75, .75)
+            drive.withStop (-80, -75, .75)
             drive.withStop (75, 75, 1)
     print "stop"
     drive.withStop(0, 0, 0)
     sensor.cameraTrack()
     
 def getOutOfStartBox() :
-    drive.withStop( 75, 75, 6 )
-    '''drive.withStop( 75, -20, 2 )
+    drive.withStop( 75, -20, 2 )
     servo.moveClapper (c.clapperDrive, 20)
     drive.withStop( 75, 75, .5 )
-    drive.withStop( 75, -75, .55 )
+    drive.withStop( 75, -75, .1 )
     drive.withStop( 75, 80, .75 )
-    drive.withStop( 15, 75, 1.5 )
-    drive.withStop( 75, 75, 4 )'''
+    drive.withStop( 0, 75, .9 )
+    drive.withStop( 75, 85, 3 )
+    
+def squish ():   
+    servo.moveClapper(c.clapperParallel, 6)
+    servo.moveClapper(c.clapperOpen, 6)
+    time.sleep(0.5)
+    servo.moveClapper(c.clapperParallel, 6)
+    servo.moveClapper(c.clapperOpen, 6)
+    time.sleep(0.5)
+    drive.withStop(-75, -75, .75)
     
     
     
 def eat() :
     servo.moveClapper(c.clapperOpen, 6)
-    drive.noStop(75, 75, .4)
+    drive.noStop(70, 80, .4)
     #servo.moveClapper(c.clapperParallel, 10)
     #drive.withStop (0,0,0)
     #drive.withStop(100, 100, 0.5)

@@ -26,12 +26,12 @@ clapperTight = 915
 # sorter positions
 sorterLeft = 0
 sorterRight = 2047
-sorterCenter = 840 #890
+sorterCenter = 880 #840
 
 # kicker positions
-kickerBack = 400 #650
+#kickerBack = 400 #650
 kickerReady = 900 #1300
-kickerOut = 1850 #1800
+kickerOut = 1600 #1850
 
 #camera
 blobSize = 2000
