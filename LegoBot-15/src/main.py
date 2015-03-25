@@ -20,6 +20,7 @@ start robot with clapper facing away from ping pong balls, right tire on pencil 
 def main() :
     act.init()
     act.getOutOfStartBox()
+    
     #act.testRun() -- tests servo values
     #act.printSize() 
     act.squish()
@@ -28,7 +29,9 @@ def main() :
     for i in range(6):
         act.cameraSort()
         
+    
     # act.filter()
+    return
     # act.filter()
     # drive.withStop(100, 100, 0.5)
     # drive.withStop(-100,-100, 0.5)

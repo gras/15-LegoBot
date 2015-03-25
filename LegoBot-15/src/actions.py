@@ -18,18 +18,23 @@ import time
 def init() :
     # set print to unbuffered
     sys.stdout = os.fdopen(sys.stdout.fileno(),'w',0)
+    
     print "starting legoBot"
     link.enable_servos()
     time.sleep (1.0)
     link.camera_open() 
     servo.testServo()
+
+    if c.isClone :
+        print "Running Clone"
+    else :
+        print "Running Prime"
+
     #link.camera_load_config(red-green)
     #servo.moveClapper( c.clapperOpen )
     #servo.moveSorter( c.sorterCenter )
     #servo.moveKicker( c.kickerReady )
     
-    print "We did it!!!"
-
     # wait for light
 
 def printSize():
@@ -58,13 +63,21 @@ def cameraSort():
     sensor.cameraTrack()
     
 def getOutOfStartBox() :
-    drive.withStop( 75, -20, 2 )
-    servo.moveClapper (c.clapperDrive, 20)
-    drive.withStop( 75, 75, .5 )
-    drive.withStop( 75, -75, .1 )
-    drive.withStop( 75, 80, .75 )
-    drive.withStop( 0, 75, .9 )
-    drive.withStop( 75, 85, 3 )
+    if c.isClone:
+        drive.withStop( 75, -20, 1.5 )
+        servo.moveClapper (c.clapperDrive, 20)
+        drive.withStop( 75, 75, .5 )
+        drive.withStop( 75, 80, .75 )
+        drive.withStop( 0, 75, .3 )
+        drive.withStop( 75, 85, 3 )
+    else:
+        drive.withStop( 75, -20, 2 )
+        servo.moveClapper (c.clapperDrive, 20)
+        drive.withStop( 75, 75, .5 )
+        drive.withStop( 75, -75, .1 )
+        drive.withStop( 75, 80, .75 )
+        drive.withStop( 0, 75, .9 )
+        drive.withStop( 75, 85, 3 )
     
 def squish ():   
     servo.moveClapper(c.clapperParallel, 6)

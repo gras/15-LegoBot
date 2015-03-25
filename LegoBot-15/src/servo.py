@@ -25,6 +25,12 @@ def testServo():
     time.sleep(1.0)
     link.set_servo_position(c.kicker, c.kickerReady)
     time.sleep(1.0)
+    print "testing gate"
+    link.set_servo_position(c.gate, c.gateOpen)
+    time.sleep(1.0)
+    link.set_servo_position(c.gate, c.gateClose)
+    time.sleep(1.0)
+    
 
 def moveClapper( endPos, speed=10 ):
     moveServo( c.clapper, endPos, speed )
