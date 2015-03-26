@@ -68,26 +68,39 @@ def getOutOfStartBox() :
         servo.moveClapper (c.clapperDrive, 20)
         drive.withStop( 75, 75, .5 )
         drive.withStop( 75, 80, .75 )
-        drive.withStop( 0, 75, .3 )
-        drive.withStop( 75, 85, 3 )
+        drive.withStop(0, 75, 0.3)
     else:
+        drive.withStop( 75, -20, 1.5 )
+        servo.moveClapper (c.clapperDrive, 20)
+        drive.withStop( 75, 75, .5 )
+        drive.withStop( 75, 80, .75 )
+        drive.withStop(0, 75, 0.3)
+        '''
         drive.withStop( 75, -20, 2 )
         servo.moveClapper (c.clapperDrive, 20)
         drive.withStop( 75, 75, .5 )
         drive.withStop( 75, -75, .1 )
         drive.withStop( 75, 80, .75 )
-        drive.withStop( 0, 75, .9 )
-        drive.withStop( 75, 85, 3 )
+        '''
     
-def squish ():   
-    servo.moveClapper(c.clapperParallel, 6)
-    servo.moveClapper(c.clapperOpen, 6)
-    time.sleep(0.5)
-    servo.moveClapper(c.clapperParallel, 6)
-    servo.moveClapper(c.clapperOpen, 6)
-    time.sleep(0.5)
-    drive.withStop(-75, -75, .75)
+def crossBump (): 
+    drive.noStop(50,55,.5)
+    for _ in range(3) :
+        servo.moveClapper(c.clapperOpen, 6)
+        servo.moveClapper(c.clapperParallel, 6)
+    drive.withStop(0, 0, 0)
+    sensor.cameraTrack()
+def test():
+    drive.withStop(75, 75, 5)   
     
+    
+def sortFirstTribbles():
+    for _ in range (3):
+        drive.noStop(50,55,.5)
+        servo.moveClapper(c.clapperOpen, 6)
+        servo.moveClapper(c.clapperParallel, 6)
+        drive.withStop(0, 0, 0)
+        sensor.cameraTrack()
     
     
 def eat() :
@@ -142,7 +155,7 @@ def getTribbles() :
     drive.withStop( 100, 100, 0.10 )
     
 def DEBUG() :
+    link.ao()
     print "DEBUG"
     link.camera_close()
-    link.ao()
     exit()
