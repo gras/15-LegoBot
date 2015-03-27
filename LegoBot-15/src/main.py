@@ -26,7 +26,8 @@ def main() :
     #act.testRun() -- tests servo values
     #act.printSize() 
     act.crossBump()
-    act.sortFirstTribbles()
+    act.sortAndGo(4)
+    act.getSecondPile()
     return
     act.eat() 
     for _ in range(6):

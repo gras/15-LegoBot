@@ -68,7 +68,7 @@ def getOutOfStartBox() :
         servo.moveClapper (c.clapperDrive, 20)
         drive.withStop( 75, 75, .5 )
         drive.withStop( 75, 80, .75 )
-        drive.withStop(0, 75, 0.3)
+        drive.withStop(0, 75, 0.4)
     else:
         drive.withStop( 75, -20, 1.5 )
         servo.moveClapper (c.clapperDrive, 20)
@@ -90,12 +90,24 @@ def crossBump ():
         servo.moveClapper(c.clapperParallel, 6)
     drive.withStop(0, 0, 0)
     sensor.cameraTrack()
+    
+def getSecondPile ():  
+    time.sleep(1)  
+    drive.withStop(-20, 75, 1.5)
+    sortAndGo(1)
+    time.sleep(.5)
+    drive.withStop(50, 50, .3)
+    drive.withStop(-20, 75, 1.35)
+    time.sleep(.2)
+    servo.moveClapper(c.clapperOpen, 6)
+    drive.withStop(75, 75, 3)
+    
 def test():
     drive.withStop(75, 75, 5)   
     
     
-def sortFirstTribbles():
-    for _ in range (3):
+def sortAndGo(n):
+    for _ in range (n):
         drive.noStop(50,55,.5)
         servo.moveClapper(c.clapperOpen, 6)
         servo.moveClapper(c.clapperParallel, 6)

@@ -81,8 +81,8 @@ if isClone:
     kickerOut = 900 #1850
  
     #gate positions
-    gateOpen = 850 #1050
-    gateClose = 480
+    gateOpen = 1000 #850 
+    gateClose = 800 #480
     
     #camera
     blobSize = 2000
