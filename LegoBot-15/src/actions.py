@@ -30,16 +30,10 @@ def init() :
     else :
         print "Running Prime"
 
-    #link.camera_load_config(red-green)
-    #servo.moveClapper( c.clapperOpen )
-    #servo.moveSorter( c.sorterCenter )
-    #servo.moveKicker( c.kickerReady )
-    
+
     # wait for light
 
-def printSize():
-    for I in range(20):
-        print sensor.getLargestArea()
+
 
 def cameraSort():
     drive.noStop(75, 75, 0.1)
@@ -60,15 +54,18 @@ def cameraSort():
             drive.withStop (75, 75, 1)
     print "stop"
     drive.withStop(0, 0, 0)
-    sensor.cameraTrack()
+    sensor.sortTribble()
     
 def getOutOfStartBox() :
     if c.isClone:
         drive.withStop( 75, -20, 1.75 )    #1.5
         servo.moveClapper (c.clapperDrive, 20)
-        drive.withStop( 75, 75, .5 )
-        drive.withStop( 75, 80, .75 )
-        drive.withStop(0, 75, 0.4)
+        drive.withStop( 75, 75, .5 )#was .5
+        drive.withStop( 75, 80, .75 )# .75
+        drive.withStop(0, 75, 0.5)# 0.4
+        drive.withStop(75, 90, 0.5)# 75, 75
+      
+          
     else:
       
         drive.withStop( 75, -20, 1.5 )
@@ -76,100 +73,38 @@ def getOutOfStartBox() :
         drive.withStop( 75, 75, .5 )
         drive.withStop( 75, 80, .75 )
         drive.withStop(0, 75, 0.3)
-        '''
-        drive.withStop( 75, -20, 2)
-        servo.moveClapper (c.clapperDrive, 20)
-        drive.withStop( 75, 75, .5 )
-        drive.withStop( 75, -75, .1 )
-        drive.withStop( 75, 80, .75 )
-        '''
-    
+        
+
 def crossBump (): 
-    drive.noStop(50,55,.5)
-    for _ in range(3) :
+    drive.noStop(55,50,.5)
+    for _ in range(1) :#3
         servo.moveClapper(c.clapperOpen, 6)
         servo.moveClapper(c.clapperParallel, 6)
     drive.withStop(0, 0, 0)
-    sensor.cameraTrack()
+    sensor.sortTribble()  
     
-def getSecondPile ():  
-    time.sleep(1)  
-    drive.withStop(-20, 75, 1.75)
-    servo.moveClapper(c.clapperDrive, 6)
-    time.sleep(1)
-    drive.withStop(-50, -50, .75)
-    sortAndGo(1)
-    DEBUG("DONE")
-    time.sleep(.5)
-    drive.withStop(50, 50, .3)
-    drive.withStop(-20, 75, 1.35)
-    time.sleep(.2)
-    servo.moveClapper(c.clapperOpen, 6)
-    drive.withStop(75, 75, 3)
     
 def test():
     drive.withStop(75, 75, 5)   
     
+def getOutOfCorner():
+    drive.withStop(25, 25, .5) #make time longer!
+    servo.moveClapper(c.clapperTight, 6)
+    drive.withStop(-25,-50, 1.5)
     
-def sortAndGo(n):
-    for _ in range (n):
-        drive.noStop(50,55,.5)
+    
+def sortAndGo(num):
+    # drives while opening and closing Clapper, 
+    # then stops to sort tribbles
+    # repeats "num" times
+    for _ in range (num):
+        drive.noStop(55,50,.5)
         servo.moveClapper(c.clapperOpen, 6)
         servo.moveClapper(c.clapperParallel, 6)
         drive.withStop(0, 0, 0)
-        sensor.cameraTrack()
+        sensor.sortTribble()
     
-    
-def eat() :
-    servo.moveClapper(c.clapperOpen, 6)
-    drive.noStop(70, 80, .4)
-    #servo.moveClapper(c.clapperParallel, 10)
-    #drive.withStop (0,0,0)
-    #drive.withStop(100, 100, 0.5)
-    
-def filter() :
-    # drive.withStop(100, 100, 0.5)
-    servo.moveClapper(c.clapperOpen, 6)
-    drive.withStop(100, 100, 0.5)
-    servo.moveClapper(c.clapperClosed, 6)
 
-def testRun() :
-    drive.withStop(100, 100, 1)
-    print"we should start moving now!"
-    servo.moveClapper(c.clapperWide, 3)
-    servo.moveClapper(c.clapperOpen, 3)
-    servo.moveClapper(c.clapperClosed, 3)
-    servo.moveClapper(c.clapperTight, 3)
-    print"clap over"
-
-def grabFirstPile() :
-    drive.withStop(100, 100, 3.0)
-    #servo.moveClapper( c.clapperClosed )
-
-def sort() :
-    #servo.moveClapper( c.clapperClosed )
-    #thread tid = link.thread_create(sensor.cameraTrack)
-    #link.thread_start()
-    #drive.withStop(100, 100, 1.0)
-    sensor.getLargestArea()
-    
-def printBlobSize():
-    sensor.getLargestArea()
-    
-    
-def getTribbles() :   
-    drive.noStop( 100, 100, 0.01 )
-    servo.moveSorter( c.sorterLeft )
-    servo.moveKicker( c.kickerOut, 2000 )
-    servo.moveSorter( c.sorterCenter )
-    servo.moveKicker( c.kickerReady )
-    drive.noStop( 50, 100, .5 )
-    drive.noStop( 100, 50, .5 )
-    servo.moveSorter( c.sorterRight )
-    servo.moveKicker( c.kickerOut, 2000 )
-    servo.moveSorter( c.sorterCenter )
-    servo.moveKicker( c.kickerReady )
-    drive.withStop( 100, 100, 0.10 )
     
 def DEBUG(msg) :
     link.ao()

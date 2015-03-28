@@ -13,10 +13,7 @@ def getLargestArea():
     link.camera_update()
     link.camera_update()
     I = 0
-    #while link.get_object_area(c.chanRed, 0) < 0 and link.get_object_area(c.chanGreen, 0) < 0:
-    #    I+=1
     link.camera_update()
-        #print I
     redArea = link.get_object_area(c.chanRed,0)
     print "red area", I, redArea
     greenArea = link.get_object_area(c.chanGreen,0)
@@ -26,8 +23,8 @@ def getLargestArea():
     else :
         return greenArea
 
-def cameraTrack() :
-    print "cameraTrack"
+def sortTribble() :
+    print "sortTribble"
     link.camera_update()
     link.camera_update()
     time.sleep (0.5)
