@@ -27,8 +27,9 @@ def main() :
     #act.printSize() 
     act.crossBump()
     act.sortAndGo(4)
+    
     act.getSecondPile()
-    return
+   
     act.eat() 
     for _ in range(6):
         act.cameraSort()

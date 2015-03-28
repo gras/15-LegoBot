@@ -64,19 +64,20 @@ def cameraSort():
     
 def getOutOfStartBox() :
     if c.isClone:
-        drive.withStop( 75, -20, 1.5 )
+        drive.withStop( 75, -20, 1.75 )    #1.5
         servo.moveClapper (c.clapperDrive, 20)
         drive.withStop( 75, 75, .5 )
         drive.withStop( 75, 80, .75 )
         drive.withStop(0, 75, 0.4)
     else:
+      
         drive.withStop( 75, -20, 1.5 )
         servo.moveClapper (c.clapperDrive, 20)
         drive.withStop( 75, 75, .5 )
         drive.withStop( 75, 80, .75 )
         drive.withStop(0, 75, 0.3)
         '''
-        drive.withStop( 75, -20, 2 )
+        drive.withStop( 75, -20, 2)
         servo.moveClapper (c.clapperDrive, 20)
         drive.withStop( 75, 75, .5 )
         drive.withStop( 75, -75, .1 )
@@ -93,8 +94,12 @@ def crossBump ():
     
 def getSecondPile ():  
     time.sleep(1)  
-    drive.withStop(-20, 75, 1.5)
+    drive.withStop(-20, 75, 1.75)
+    servo.moveClapper(c.clapperDrive, 6)
+    time.sleep(1)
+    drive.withStop(-50, -50, .75)
     sortAndGo(1)
+    DEBUG("DONE")
     time.sleep(.5)
     drive.withStop(50, 50, .3)
     drive.withStop(-20, 75, 1.35)
@@ -166,8 +171,8 @@ def getTribbles() :
     servo.moveKicker( c.kickerReady )
     drive.withStop( 100, 100, 0.10 )
     
-def DEBUG() :
+def DEBUG(msg) :
     link.ao()
-    print "DEBUG"
+    print msg
     link.camera_close()
     exit()
