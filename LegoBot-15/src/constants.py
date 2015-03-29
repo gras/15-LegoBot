@@ -54,9 +54,6 @@ blobSize = 2000
 
 
 
-
-
-# hard code for now, but will be clone switch
 isClone = link.digital(clonePort)
         
 
@@ -65,7 +62,7 @@ if isClone:
     # servo positions
     clapperWide = 0
     clapperDrive = 300
-    clapperOpen = 500 #375
+    clapperOpen = 375 #500 
     clapperParallel = 800
     clapperClosed = 700
     clapperTight = 915

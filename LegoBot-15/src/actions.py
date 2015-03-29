@@ -15,6 +15,7 @@ import servo
 import sensor
 import time
 
+
 def init() :
     # set print to unbuffered
     sys.stdout = os.fdopen(sys.stdout.fileno(),'w',0)
@@ -33,29 +34,6 @@ def init() :
 
     # wait for light
 
-
-
-def cameraSort():
-    drive.noStop(75, 75, 0.1)
-    servo.moveClapper(c.clapperParallel, 10)
-    count = 0
-    
-    while sensor.getLargestArea() < c.blobSize:
-        count = count+1
-        if count >3:
-            #print "break"
-            #break  
-            count = 0
-            servo.moveClapper (c.clapperOpen, 20)
-            drive.withStop (50, 0, 0.5)
-            servo.moveClapper (c.clapperParallel, 5)
-            drive.withStop (0, 50, 1)
-            drive.withStop (-80, -75, .75)
-            drive.withStop (75, 75, 1)
-    print "stop"
-    drive.withStop(0, 0, 0)
-    sensor.sortTribble()
-    
 def getOutOfStartBox() :
     if c.isClone:
         drive.withStop( 75, -20, 1.75 )    #1.5
@@ -64,19 +42,19 @@ def getOutOfStartBox() :
         drive.withStop( 75, 80, .75 )# .75
         drive.withStop(0, 75, 0.5)# 0.4
         drive.withStop(75, 90, 0.5)# 75, 75
-      
-          
     else:
-      
-        drive.withStop( 75, -20, 1.5 )
-        servo.moveClapper (c.clapperDrive, 20)
-        drive.withStop( 75, 75, .5 )
-        drive.withStop( 75, 80, .75 )
-        drive.withStop(0, 75, 0.3)
-        
-
+        drive.withStop(50, 0, .750)
+        drive.withStop(50, -50, 1.75)
+        #DEBUG("stop")
+        #drive.withStop( 75, -20, 3.0 )    #1.5
+        servo.moveClapper (c.clapperWide, 20)
+        drive.withStop(50, 50, 3.5)
+         
+def getToMidLine():
+    drive.withStop(40, 50, 3)       
+ 
 def crossBump (): 
-    drive.noStop(55,50,.5)
+    drive.noStop(70,50,.5)
     for _ in range(1) :#3
         servo.moveClapper(c.clapperOpen, 6)
         servo.moveClapper(c.clapperParallel, 6)
@@ -84,30 +62,40 @@ def crossBump ():
     sensor.sortTribble()  
     
     
-def test():
-    drive.withStop(75, 75, 5)   
+
     
-def getOutOfCorner():
-    drive.withStop(25, 25, .5) #make time longer!
-    servo.moveClapper(c.clapperTight, 6)
-    drive.withStop(-25,-50, 1.5)
     
     
 def sortAndGo(num):
     # drives while opening and closing Clapper, 
     # then stops to sort tribbles
     # repeats "num" times
-    for _ in range (num):
-        drive.noStop(55,50,.5)
-        servo.moveClapper(c.clapperOpen, 6)
-        servo.moveClapper(c.clapperParallel, 6)
-        drive.withStop(0, 0, 0)
-        sensor.sortTribble()
-    
+    if c.isClone:
+        for _ in range (num):
+            drive.noStop(55,50,.5)
+            servo.moveClapper(c.clapperOpen, 6)
+            servo.moveClapper(c.clapperParallel, 6)
+            drive.withStop(0, 0, 0)
+            sensor.sortTribble()
+    else: 
+        for _ in range (num):
+            drive.noStop( 55, 50, .5)
+            servo.moveClapper(c.clapperOpen, 6)
+            servo.moveClapper(c.clapperParallel, 6)
+            drive.withStop(0, 0, 0)
+            sensor.sortTribble()
 
+def getOutOfCorner():
+    drive.withStop(25, 25, 2) #make time longer!
+    servo.moveClapper(c.clapperTight, 6)
+    drive.withStop(-25,-50, 1.5)
     
 def DEBUG(msg) :
     link.ao()
     print msg
     link.camera_close()
     exit()
+
+def test():
+    drive.withStop(75, 75, 5)   
+    

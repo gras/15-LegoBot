@@ -15,13 +15,15 @@ def main() :
     
     act.getOutOfStartBox()
 
+    act.getToMidLine()
+    
     act.crossBump()
-    act.sortAndGo(5)
+    
+    act.sortAndGo(4)
     
     act.getOutOfCorner()
     
     act.DEBUG("Stop")
-    
     
     
 if __name__ == "__main__":
