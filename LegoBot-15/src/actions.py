@@ -24,6 +24,7 @@ def init() :
     link.enable_servos()
     time.sleep (1.0)
     link.camera_open() 
+    
     servo.testServo()
 
     if c.isClone :
@@ -34,14 +35,15 @@ def init() :
 
     # wait for light
 
-def getOutOfStartBox() :
+def getOutOfStartBox() :    
+    
     if c.isClone:
-        drive.withStop( 75, -20, 1.75 )    #1.5
-        servo.moveClapper (c.clapperDrive, 20)
-        drive.withStop( 75, 75, .5 )#was .5
-        drive.withStop( 75, 80, .75 )# .75
-        drive.withStop(0, 75, 0.5)# 0.4
-        drive.withStop(75, 90, 0.5)# 75, 75
+        drive.withStop( 75, -20, 1.50 )  # was ( 75, -20, 1.75 )   
+        servo.moveClapper (c.clapperDrive, 20)        
+        drive.withStop( 80, 75, .5 )#was 75, 75, .5
+        drive.withStop( 80, 85, .75 )# 75, 85, .75
+        drive.withStop(0, 60, 0.5)# 0, 75, 0.5        
+        drive.withStop(75, 90, 0.5)# 75, 90, 0.5
     else:
         drive.withStop(50, 0, .750)
         drive.withStop(50, -50, 1.75)
@@ -59,12 +61,7 @@ def crossBump ():
         servo.moveClapper(c.clapperOpen, 6)
         servo.moveClapper(c.clapperParallel, 6)
     drive.withStop(0, 0, 0)
-    sensor.sortTribble()  
-    
-    
-
-    
-    
+    sensor.sortTribble()      
     
 def sortAndGo(num):
     # drives while opening and closing Clapper, 
@@ -90,7 +87,7 @@ def getOutOfCorner():
     servo.moveClapper(c.clapperTight, 6)
     drive.withStop(-25,-50, 1.5)
     
-def DEBUG(msg) :
+def DEBUG( msg = "DEBUG" ) :
     link.ao()
     print msg
     link.camera_close()

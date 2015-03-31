@@ -14,10 +14,12 @@ def main() :
     act.init()
     
     act.getOutOfStartBox()
-
+    
     act.getToMidLine()
     
     act.crossBump()
+    
+    act.DEBUG()
     
     act.sortAndGo(4)
     
