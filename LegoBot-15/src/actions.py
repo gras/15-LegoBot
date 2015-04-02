@@ -64,7 +64,7 @@ def sortAndGo(num):
         sensor.sortTribble()
 
 def getOutOfCorner():
-    drive.withStop(25, 25, 2) #make time longer!
+    drive.withStop(25, 25, 2) 
     servo.moveClapper(c.clapperTight, 6)
     drive.withStop(-25,-50, 1.5)
     
