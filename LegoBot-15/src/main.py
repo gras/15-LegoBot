@@ -11,17 +11,17 @@ import actions as act
 
 def main() :
     #act.test()
+    #return
+
     act.init()
     
     act.getOutOfStartBox()
     
     act.getToMidLine()
     
-    act.crossBump()
+    act.sortAndGo(5) # 6 crashes into wall
     
     act.DEBUG()
-    
-    act.sortAndGo(4)
     
     act.getOutOfCorner()
     

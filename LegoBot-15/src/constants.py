@@ -53,14 +53,13 @@ gateClose = 900 #480
 blobSize = 2000
 
 
-
 isClone = link.digital(clonePort)
         
 
 # define clone values here
 if isClone:
     # servo positions
-    clapperWide = 0
+    clapperWide = 50
     clapperDrive = 300
     clapperOpen = 375 #500 
     clapperParallel = 800

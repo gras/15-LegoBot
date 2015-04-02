@@ -36,6 +36,7 @@ def sortTribble() :
         servo.moveSorter( c.sorterLeft )
         print "moveKicker"
         servo.moveKicker( c.kickerOut, 2000 )
+        time.sleep(0.4) #0.5
         
     elif link.get_object_area(c.chanRed, 0 ) >= c.blobSize:
         print "red"
@@ -44,6 +45,7 @@ def sortTribble() :
         servo.moveSorter( c.sorterRight )
         print "moveKicker"
         servo.moveKicker( c.kickerOut, 2000 )
+        time.sleep(0.4) #0.5
         
     else:
         print "nothing found"
