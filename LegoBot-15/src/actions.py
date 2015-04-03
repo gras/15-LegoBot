@@ -61,7 +61,7 @@ def sortAndGo(num):
     # drives while opening and closing Clapper, 
     # then stops to sort tribbles
     # repeats "num" times
-    pomsSorted = 0
+    pomsSorted = 0 
     while not link.digital(c.bumper) and pomsSorted < num:
         drive.withStop(0, 0, 0)
         found = sensor.sortTribble()
@@ -75,6 +75,8 @@ def sortAndGo(num):
             drive.withStop(-50, 25, .5)
             servo.moveClapper(c.clapperClosed, 200)
             drive.withStop(50, -25, .65)
+            drive.noStop( 55, 50, .3)
+            #DEBUG("Stop")
         drive.noStop( 55, 50, .5)
     
        
