@@ -30,6 +30,7 @@ def sortTribble() :
     link.camera_update()
     time.sleep (0.5)
     link.camera_update()
+    found = 0
     if link.get_object_area( c.chanGreen, 0 ) >= c.blobSize:
         print "green"
         print link.get_object_area( c.chanGreen, 0 )  
@@ -38,6 +39,7 @@ def sortTribble() :
         print "moveKicker"
         servo.moveKicker( c.kickerOut, 2000 )
         time.sleep(0.4) #0.5
+        found = 1
         
     elif link.get_object_area(c.chanRed, 0 ) >= c.blobSize:
         print "red"
@@ -47,13 +49,16 @@ def sortTribble() :
         print "moveKicker"
         servo.moveKicker( c.kickerOut, 2000 )
         time.sleep(0.4) #0.5
+        found = 1
         
     else:
         print "nothing found"
-        servo.moveClapper(c.clapperDrive, 200)
-        drive.withStop(-50, 25, .5)
-        servo.moveClapper(c.clapperClosed, 200)
-        drive.withStop(50, -25, .65)
+        found = 0
        
     servo.moveSorter( c.sorterCenter ,200)
     servo.moveKicker( c.kickerReady, 2000 )
+    return found
+    
+
+
+    

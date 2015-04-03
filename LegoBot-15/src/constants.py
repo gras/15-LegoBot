@@ -17,6 +17,7 @@ mRight = 0
 
 # digital ports
 clonePort = 15
+bumper = 10
 
 # analog ports
  
@@ -28,7 +29,7 @@ chanGreen = 0
 chanRed = 1 
  
 # servo positions
-clapperWide = 0
+clapperWide = 100
 clapperDrive = 150
 clapperOpen = 400 #375
 clapperParallel = 750

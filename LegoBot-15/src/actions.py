@@ -51,17 +51,34 @@ def getToMidLine():
     drive.noStop(25, 25, .25)
     servo.moveClapper(c.clapperParallel, 5)
     drive.withStop(0, 0, 0) 
-    
+
+def crossBump():
+    servo.moveClapper(c.clapperWide)
+    drive.withStop(90, 90, 1.60) # poms are catapulted forward from momentum / speed
+    servo.moveClapper(c.clapperParallel)
+
 def sortAndGo(num):
     # drives while opening and closing Clapper, 
     # then stops to sort tribbles
     # repeats "num" times
-    for _ in range (num):
-        drive.noStop( 55, 50, .5)
-        servo.moveClapper(c.clapperWide, 30) # was (c.clapperOpen, 6)
-        servo.moveClapper(c.clapperParallel, 6) 
+    pomsSorted = 0
+    while not link.digital(c.bumper) and pomsSorted < num:
         drive.withStop(0, 0, 0)
-        sensor.sortTribble()
+        found = sensor.sortTribble()
+        if found:
+            print "pom found"
+            pomsSorted += 1 
+            print "poms sorted", pomsSorted
+        else:
+            print "wiggle"
+            servo.moveClapper(c.clapperDrive, 200)
+            drive.withStop(-50, 25, .5)
+            servo.moveClapper(c.clapperClosed, 200)
+            drive.withStop(50, -25, .65)
+        drive.noStop( 55, 50, .5)
+    
+       
+
 
 def getOutOfCorner():
     drive.withStop(25, 25, 2) 

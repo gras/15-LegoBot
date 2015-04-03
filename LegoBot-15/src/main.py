@@ -19,7 +19,9 @@ def main() :
     
     act.getToMidLine()
     
-    act.sortAndGo(5) # 6 crashes into wall
+    act.crossBump()
+    
+    act.sortAndGo(6) # 6 crashes into wall
     
     act.DEBUG()
     
