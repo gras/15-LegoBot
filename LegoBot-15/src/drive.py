@@ -23,22 +23,34 @@ def withStop( leftSpeed, rightSpeed, driveTime) :
 
 def testGates():
     print "testing left gate"
-    link.motor(c.leftGate, 20)
-    time.sleep(.4)
-    link.motor(c.leftGate, -20)
-    time.sleep(.4)
-    #link.motor(c.leftGate, 0)
-    #time.sleep(.4)
-    
+    testOpenGate(c.leftGate)
+    time.sleep(0.4)
+    testCloseGate(c.leftGate)
+    time.sleep(0.4)
     print "testing right gate"
-    link.motor(c.rightGate, 20)
-    time.sleep(.4)
-    link.motor(c.rightGate, -20)
-    time.sleep(.4)
-    #link.motor(c.leftGate, 0)
-    #time.sleep(.2)
+    testOpenGate(c.rightGate)
+    time.sleep(0.4)
+    testCloseGate(c.rightGate)
+    time.sleep(0.4)
     
-def openGate( gateNumber ):
+
+def testOpenGate( gateNumber ):
+    link.motor(gateNumber, 50)
+    time.sleep(0.1)
+    link.motor(gateNumber, 0)
+    
+def testCloseGate( gateNumber ):
     link.motor(gateNumber, -50)
     time.sleep(0.1)
+    link.motor(gateNumber, 0)
+    
+def openGate( gateNumber ):
+    link.motor(gateNumber, 50)
+    time.sleep(0.4)
+    link.motor(gateNumber, 0)
+    
+def closeGate( gateNumber ):
+    link.motor(gateNumber, -50)
+    time.sleep(0.4)
+    link.motor(gateNumber, 0)
     

@@ -8,7 +8,6 @@ import kovan as link
 import constants as c
 import servo
 import time
-import drive
 
 def getLargestArea():
     link.camera_update()

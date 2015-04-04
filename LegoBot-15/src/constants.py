@@ -13,8 +13,9 @@ clapper = 1
 # motor ports
 mLeft = 2
 mRight = 0
-leftGate = 1
-rightGate = 3
+# gates are by robot's left and right
+leftGate = 3
+rightGate = 1
 
 # digital ports
 clonePort = 15
