@@ -31,6 +31,14 @@ def main() :
     
     act.getSecondPile()
     
+    act.sortAndGo(6)
+    
+    act.secondDriveIntoWall()
+    
+    act.startToTurn()
+    
+    act.scoreGreenTribbles()
+    
     act.DEBUG()
     
     act.getOutOfCorner()
