@@ -15,7 +15,7 @@ def main() :
 
     act.init()
  
-   act.getOutOfStartBox()
+    act.getOutOfStartBox()
     
     act.getToMidLine()
     

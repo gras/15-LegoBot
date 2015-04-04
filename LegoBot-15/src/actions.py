@@ -14,6 +14,7 @@ import drive
 import servo
 import sensor
 import time
+from constants import rightGate
 
 
 def init() :
@@ -28,6 +29,7 @@ def init() :
     
     servo.testServo()
     drive.testGates()
+
     if c.isClone :
         print "Running Clone"
     else :
@@ -65,7 +67,7 @@ def getToMidLine():
 def crossBump():
     servo.moveClapper(c.clapperClosed)
     if c.isPrime:
-        drive.withStop(90, 90, 1.60) # poms are catapulted forward from momentum / speed
+        drive.withStop(90, 90, 1.60) 
     else:
         drive.withStop(90, 90, 1.30)
         drive.withStop(45, 0, .35)
@@ -109,10 +111,7 @@ def DEBUG( msg = "DEBUG" ) :
     
 def driveIntoWall():
     # drives forward along a wall until the touch sensor in front bumps into something
-    drive.noStop(50, 50, .05)#was 55, 50
-    #while link.digital(c.bumper) == 0:
-      #  pass
-    while link.analog_et(c.ETPort) < 400:
+
     drive.noStop(65, 50, .05)
     while link.digital(c.bumper) == 0:
         pass
@@ -154,6 +153,9 @@ def startToTurn():
         drive.withStop( 75, 75, 0.5)
         drive.withStop( 10, 100, 2.75)
 '''
+
+
+
 def scoreRedTribbles():
     drive.openGate(c.rightGate)
     driveIntoWall()
