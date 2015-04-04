@@ -55,12 +55,12 @@ blobSize = 2000
 
 
 isClone = link.digital(clonePort)
-        
+isPrime = not isClone      
 
 # define clone values here
 if isClone:
     # servo positions
-    clapperWide = 50
+    clapperWide = 150
     clapperDrive = 300
     clapperOpen = 375 #500 
     clapperParallel = 800
@@ -75,7 +75,7 @@ if isClone:
     # kicker positions
     #kickerBack = 400 #650
     kickerReady = 400 #1300
-    kickerOut = 900 #1850
+    kickerOut = 1100 #1850
  
     #gate positions
     gateOpen = 1000 #850 

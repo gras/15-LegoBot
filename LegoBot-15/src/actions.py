@@ -23,7 +23,8 @@ def init() :
     print "starting legoBot"
     link.enable_servos()
     time.sleep (1.0)
-    link.camera_open() 
+    if not link.camera_open():
+        DEBUG("camera failed to open") 
     
     servo.testServo()
 
@@ -37,24 +38,38 @@ def init() :
 
 def getOutOfStartBox() :    
     
-    
     drive.withStop(50, 0, .750)
-    drive.withStop(50, -50, 1.75)
-    drive.withStop(50, 50, .2)
-    #drive.withStop(50, 0, .15)
-    drive.withStop(50, 50, 0.5)
     
-    servo.moveClapper (c.clapperWide, 20)
-    drive.withStop(50, 50, 4)
-     
+    if c.isPrime:
+        drive.withStop(50, -50, 1.75)
+    else: 
+        drive.withStop(50, -50, 1.45)
+    
+   
+    
+    drive.withStop(50, 50, 0.7)
+    
+    servo.moveClapper (c.clapperWide, 50)
+    
+    if c.isPrime:
+        drive.withStop(50, 50, 4)
+    else:
+        drive.withStop(50, 65, 3)
+        drive.withStop(-50, 50, .5)
+    
 def getToMidLine():
     drive.noStop(25, 25, .25)
     servo.moveClapper(c.clapperParallel, 5)
     drive.withStop(0, 0, 0) 
 
 def crossBump():
-    servo.moveClapper(c.clapperWide)
-    drive.withStop(90, 90, 1.60) # poms are catapulted forward from momentum / speed
+    servo.moveClapper(c.clapperClosed)
+    if c.isPrime:
+        drive.withStop(90, 90, 1.60) # poms are catapulted forward from momentum / speed
+    else:
+        drive.withStop(90, 90, 1.30)
+        drive.withStop(45, 0, .35)
+    
     servo.moveClapper(c.clapperParallel)
 
 def sortAndGo(num):
