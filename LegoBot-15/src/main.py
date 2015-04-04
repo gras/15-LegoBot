@@ -14,6 +14,7 @@ def main() :
     #return
 
     act.init()
+    
     """
     act.getOutOfStartBox()
     
@@ -28,6 +29,8 @@ def main() :
     act.startToTurn()
     
     act.scoreRedTribbles()
+    
+    act.getSecondPile()
     
     act.DEBUG()
     

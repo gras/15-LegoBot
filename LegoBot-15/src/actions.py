@@ -27,7 +27,7 @@ def init() :
         DEBUG("camera failed to open") 
     
     servo.testServo()
-    drive.testGates()
+    #drive.testGates()
     if c.isClone :
         print "Running Clone"
     else :
@@ -122,10 +122,14 @@ def startToTurn():
     drive.withStop( 20, 100, 1.5)
 
 def scoreRedTribbles():
-    drive.openGate(c.leftGate)
+    #drive.openGate(c.leftGate)
     driveIntoWall()
+    drive.withStop(-50, -50, 1.5)
+    drive.withStop(0, 50, 2.5)
     
-    
+def getSecondPile(): 
+    servo.moveClapper(c.clapperWide, 50)
+    drive.withStop(50, 60, 2)   
 def test():
     drive.withStop(65, 50, 15)   
     
