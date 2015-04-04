@@ -14,6 +14,8 @@ def main() :
     #return
 
     act.init()
+    
+    act.DEBUG()
     """
     act.getOutOfStartBox()
     
@@ -29,7 +31,7 @@ def main() :
     
     act.scoreRedTribbles()
     
-    act.DEBUG()
+    
     
     act.getOutOfCorner()
     
