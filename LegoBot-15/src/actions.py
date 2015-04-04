@@ -44,7 +44,7 @@ def getOutOfStartBox() :
     #drive.withStop(50, 0, .15)
     drive.withStop(50, 50, 0.5)
     
-    servo.moveClapper (c.clapperWide, 20)
+    servo.moveClapper (c.clapperWide, 50)
     drive.withStop(50, 50, 4)
      
 def getToMidLine():
@@ -53,7 +53,7 @@ def getToMidLine():
     drive.withStop(0, 0, 0) 
 
 def crossBump():
-    servo.moveClapper(c.clapperWide)
+    servo.moveClapper(c.clapperClosed)
     drive.withStop(90, 90, 1.60) # poms are catapulted forward from momentum / speed
     servo.moveClapper(c.clapperParallel)
 
@@ -92,7 +92,15 @@ def DEBUG( msg = "DEBUG" ) :
     print msg
     link.camera_close()
     exit()
-
+    
+def driveIntoWall():
+    while link.analog10(c.bumper) == 0:
+        drive.noStop(55, 50, .05)
+    drive.withStop(0, 0, 0)
+    
+def startToTurn():
+    drive.withStop(-45, -60, .5)
+    
 def test():
     drive.withStop(65, 50, 15)   
     
