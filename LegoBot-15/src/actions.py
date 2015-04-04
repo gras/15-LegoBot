@@ -94,9 +94,6 @@ def sortAndGo(num):
             #DEBUG("Stop")
         drive.noStop( 55, 50, .5)
     
-       
-
-
 def getOutOfCorner():
     drive.withStop(25, 25, 2) 
     servo.moveClapper(c.clapperTight, 6)
@@ -107,7 +104,28 @@ def DEBUG( msg = "DEBUG" ) :
     print msg
     link.camera_close()
     exit()
+    
+def driveIntoWall():
+    # drives forward along a wall until the touch sensor in front bumps into something
+    drive.noStop(55, 50, .05)
+    while link.digital(c.bumper) == 0:
+        pass
+    drive.withStop(0, 0, 0)
+    print "hit wall"
+    
+def startToTurn():
+    drive.withStop(-30, -30, 2.0)
+    #drive.withStop(-60, -25, 1.5)
+    drive.withStop(0, -100, 1.0)
+    drive.withStop( -100, 0, 1.0)
+    drive.withStop( 75, 75, 0.75)
+    drive.withStop( 20, 100, 1.5)
 
+def scoreRedTribbles():
+    drive.openGate(c.leftGate)
+    driveIntoWall()
+    
+    
 def test():
     drive.withStop(65, 50, 15)   
     

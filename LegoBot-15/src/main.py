@@ -14,14 +14,20 @@ def main() :
     #return
 
     act.init()
-    
+    """
     act.getOutOfStartBox()
     
     act.getToMidLine()
     
     act.crossBump()
-    
+   
     act.sortAndGo(6) # 6 crashes into wall
+    """
+    act.driveIntoWall()
+    
+    act.startToTurn()
+    
+    act.scoreRedTribbles()
     
     act.DEBUG()
     
