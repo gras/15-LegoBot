@@ -26,7 +26,8 @@ def init() :
     link.camera_open() 
     
     servo.testServo()
-
+    #drive.testGates()
+    
     if c.isClone :
         print "Running Clone"
     else :
@@ -36,14 +37,11 @@ def init() :
     # wait for light
 
 def getOutOfStartBox() :    
-    
-    
     drive.withStop(50, 0, .750)
     drive.withStop(50, -50, 1.75)
     drive.withStop(50, 50, .2)
     #drive.withStop(50, 0, .15)
     drive.withStop(50, 50, 0.5)
-    
     servo.moveClapper (c.clapperWide, 50)
     drive.withStop(50, 50, 4)
      
@@ -79,9 +77,6 @@ def sortAndGo(num):
             #DEBUG("Stop")
         drive.noStop( 55, 50, .5)
     
-       
-
-
 def getOutOfCorner():
     drive.withStop(25, 25, 2) 
     servo.moveClapper(c.clapperTight, 6)
@@ -94,12 +89,25 @@ def DEBUG( msg = "DEBUG" ) :
     exit()
     
 def driveIntoWall():
-    while link.analog10(c.bumper) == 0:
-        drive.noStop(55, 50, .05)
+    # drives forward along a wall until the touch sensor in front bumps into something
+    drive.noStop(55, 50, .05)
+    while link.digital(c.bumper) == 0:
+        pass
     drive.withStop(0, 0, 0)
+    print "hit wall"
     
 def startToTurn():
-    drive.withStop(-45, -60, .5)
+    drive.withStop(-30, -30, 2.0)
+    #drive.withStop(-60, -25, 1.5)
+    drive.withStop(0, -100, 1.0)
+    drive.withStop( -100, 0, 1.0)
+    drive.withStop( 75, 75, 0.75)
+    drive.withStop( 20, 100, 1.5)
+
+def scoreRedTribbles():
+    drive.openGate(c.leftGate)
+    driveIntoWall()
+    
     
 def test():
     drive.withStop(65, 50, 15)   

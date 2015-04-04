@@ -9,11 +9,12 @@ import kovan as link
 kicker = 3
 sorter = 0
 clapper = 1
-gate = 2
 
 # motor ports
 mLeft = 2
 mRight = 0
+leftGate = 1
+rightGate = 3
 
 # digital ports
 clonePort = 15
@@ -47,8 +48,10 @@ kickerReady = 900 #1300
 kickerOut = 1600 #1850
 
 #gate positions
+"""
 gateOpen = 1100 #1050
 gateClose = 900 #480
+"""
 
 #camera
 blobSize = 2000
