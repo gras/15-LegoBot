@@ -35,6 +35,7 @@ def sortTribble() :
         print link.get_object_area( c.chanGreen, 0 )  
         print "moveSorter"
         servo.moveSorter( c.sorterLeft, 100 )
+        time.sleep(.2)
         print "moveKicker"
         servo.moveKicker( c.kickerOut, 2000 )
         time.sleep(0.4) #0.5
@@ -45,6 +46,7 @@ def sortTribble() :
         print link.get_object_area( c.chanRed, 0 )
         print "moveSorter"  
         servo.moveSorter( c.sorterRight, 100 )
+        time.sleep(.2)
         print "moveKicker"
         servo.moveKicker( c.kickerOut, 2000 )
         time.sleep(0.4) #0.5

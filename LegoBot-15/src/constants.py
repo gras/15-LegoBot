@@ -22,7 +22,7 @@ clonePort = 15
 bumper = 10
 
 # analog ports
- 
+ETPort = 0
  
 #------------------------------------ 
 

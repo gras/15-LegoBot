@@ -15,7 +15,7 @@ def main() :
 
     act.init()
  
-    act.getOutOfStartBox()
+   act.getOutOfStartBox()
     
     act.getToMidLine()
     
@@ -26,10 +26,18 @@ def main() :
     act.driveIntoWall()
     
     act.startToTurn()
-    
+        
     act.scoreRedTribbles()
     
     act.getSecondPile()
+    
+    act.sortAndGo(6)
+    
+    act.secondDriveIntoWall()
+    
+    act.startToTurn()
+    
+    act.scoreGreenTribbles()
     
     act.DEBUG()
     
