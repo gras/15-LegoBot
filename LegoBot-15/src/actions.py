@@ -27,7 +27,7 @@ def init() :
         DEBUG("camera failed to open") 
     
     servo.testServo()
-
+    drive.testGates()
     if c.isClone :
         print "Running Clone"
     else :
