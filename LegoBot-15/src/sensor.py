@@ -27,7 +27,7 @@ def sortTribble() :
     print "sortTribble"
     link.camera_update()
     link.camera_update()
-    time.sleep (0.5)
+    time.sleep (0.5) #pause for both camera and wait for robot motion to completely stop
     link.camera_update()
     found = 0
     if link.get_object_area( c.chanGreen, 0 ) >= c.blobSize:
@@ -58,6 +58,7 @@ def sortTribble() :
        
     servo.moveSorter( c.sorterCenter ,200)
     servo.moveKicker( c.kickerReady, 2000 )
+    time.sleep(0.5)
     return found
     
 

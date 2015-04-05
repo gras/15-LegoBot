@@ -29,6 +29,8 @@ def main() :
         
     act.scoreRedTribbles()
     
+    act.DEBUG()
+    
     act.getSecondPile()
     
     act.sortAndGo(6)

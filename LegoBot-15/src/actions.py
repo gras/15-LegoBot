@@ -43,7 +43,7 @@ def getOutOfStartBox() :
     drive.withStop(50, 0, .750)
     
     if c.isPrime:
-        drive.withStop(50, -50, 2)
+        drive.withStop(50, -50, 1.75)
     else: 
         drive.withStop(50, -50, 1.65)# was 1.45
     
