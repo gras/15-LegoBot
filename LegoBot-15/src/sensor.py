@@ -8,6 +8,7 @@ import kovan as link
 import constants as c
 import servo
 import time
+import drive
 
 def getLargestArea():
     link.camera_update()
@@ -32,9 +33,10 @@ def sortTribble() :
     found = 0
     if link.get_object_area( c.chanGreen, 0 ) >= c.blobSize:
         print "green"
-        print link.get_object_area( c.chanGreen, 0 )  
+        print link.get_object_area( c.chanGreen, 0 )
         print "moveSorter"
         servo.moveSorter( c.sorterLeft, 100 )
+        drive.withStop(-50, -50, 0.1)   
         time.sleep(.2)
         print "moveKicker"
         servo.moveKicker( c.kickerOut, 2000 )
@@ -46,6 +48,7 @@ def sortTribble() :
         print link.get_object_area( c.chanRed, 0 )
         print "moveSorter"  
         servo.moveSorter( c.sorterRight, 100 )
+        drive.withStop(-50, -50, 0.1)   
         time.sleep(.2)
         print "moveKicker"
         servo.moveKicker( c.kickerOut, 2000 )

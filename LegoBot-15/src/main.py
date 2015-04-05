@@ -14,7 +14,7 @@ def main() :
     #return
 
     act.init()
- 
+    '''
     act.getOutOfStartBox()
     
     act.getToMidLine()
@@ -29,19 +29,19 @@ def main() :
         
     act.scoreRedTribbles()
     
-    act.DEBUG()
-    
     act.getSecondPile()
     
     act.sortAndGo(6)
-    
+     
     act.secondDriveIntoWall()
-    
+    '''
     act.startToTurn()
+    
+#    act.DEBUG()
     
     act.scoreGreenTribbles()
     
-    act.DEBUG()
+#    act.DEBUG()
     
     act.getOutOfCorner()
     

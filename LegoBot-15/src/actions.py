@@ -40,10 +40,10 @@ def init() :
 
 def getOutOfStartBox() :    
     
-    drive.withStop(50, 0, .750)
+    drive.withStop(30, 0, .750)
     
     if c.isPrime:
-        drive.withStop(50, -50, 1.75)
+        drive.withStop(50, -65, 1.75)
     else: 
         drive.withStop(50, -50, 1.65)# was 1.45
     
@@ -101,7 +101,7 @@ def sortAndGo(num):
 def getOutOfCorner():
     drive.withStop(25, 25, 2) 
     servo.moveClapper(c.clapperTight, 6)
-    drive.withStop(-25,-50, 1.5)
+    drive.withStop(-50,-100, 1.5)
     
 def DEBUG( msg = "DEBUG" ) :
     link.ao()
@@ -132,7 +132,7 @@ def startToTurn():
         drive.withStop(-80, 0, .5)
     drive.withStop(0, 50, .5)
     drive.withStop(50, 50, 1)
-    drive.withStop(0, 75, 1.5)
+    drive.withStop(0, 85, 1.5)
     
     '''
     drive.withStop(-30, -30, 2.0)
@@ -171,9 +171,10 @@ def scoreGreenTribbles():
 def getSecondPile(): 
     servo.moveClapper(c.clapperWide, 50)
     drive.withStop(50, 65, 2)
+    drive.closeGate(rightGate)    
     drive.withStop(65, 50, 4)
     servo.moveClapper(c.clapperParallel)
-    drive.closeGate(rightGate)
+
     
 def test():
     drive.withStop(65, 50, 15)   
