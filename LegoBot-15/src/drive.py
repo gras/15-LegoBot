@@ -33,7 +33,6 @@ def testGates():
     testCloseGate(c.rightGate)
     time.sleep(0.4)
     
-
 def testOpenGate( gateNumber ):
     link.motor(gateNumber, 50)
     time.sleep(0.1)

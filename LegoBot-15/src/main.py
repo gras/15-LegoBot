@@ -14,7 +14,7 @@ def main() :
     #return
 
     act.init()
-    '''
+
     act.getOutOfStartBox()
     
     act.getToMidLine()
@@ -25,8 +25,10 @@ def main() :
 
     act.driveIntoWall()
     
+    act.DEBUG("Stop")
+    
     act.startToTurn()
-        
+    
     act.scoreRedTribbles()
     
     act.getSecondPile()
@@ -34,18 +36,16 @@ def main() :
     act.sortAndGo(6)
      
     act.secondDriveIntoWall()
-    '''
+
     act.startToTurn()
     
-#    act.DEBUG()
-    
+
     act.scoreGreenTribbles()
+    act.startToTurnTwo()
+    act.driveIntoWall()
+    # act.getOutOfCorner()
     
-#    act.DEBUG()
-    
-    act.getOutOfCorner()
-    
-    act.DEBUG("Stop")
+    #act.DEBUG("Stop")
     
     
 if __name__ == "__main__":

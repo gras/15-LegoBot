@@ -67,7 +67,7 @@ if isClone:
     clapperWide = 150
     clapperDrive = 300
     clapperOpen = 375 #500 
-    clapperParallel = 800
+    clapperParallel = 820 #800
     clapperClosed = 700
     clapperTight = 915
     

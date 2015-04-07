@@ -14,7 +14,7 @@ import drive
 import servo
 import sensor
 import time
-from constants import rightGate
+from constants import rightGate, leftGate
 
 
 def init() :
@@ -30,10 +30,10 @@ def init() :
     servo.testServo()
     drive.testGates()
 
-    if c.isClone :
-        print "Running Clone"
-    else :
+    if c.isPrime :
         print "Running Prime"
+    else :
+        print "Running Clone"
 
 
     # wait for light
@@ -124,16 +124,23 @@ def secondDriveIntoWall():
     while link.digital(c.bumper) == 0:
         pass
     drive.withStop(0, 0, 0)
-    print "hit wall"
+    print "hit wall again"
     
 def startToTurn():
-    for _ in range(3):
-        drive.withStop(0, -100, .5)
-        drive.withStop(-80, 0, .5)
-    drive.withStop(0, 50, .5)
-    drive.withStop(50, 50, 1)
-    drive.withStop(0, 85, 1.5)
-    
+    if c.isPrime:
+        for _ in range(3):
+            drive.withStop(0, -100, .5)
+            drive.withStop(-80, 0, .5)
+        drive.withStop(0, 50, .5)
+        drive.withStop(50, 50, 1)
+        drive.withStop(0, 85, 1.5)
+    else:
+        for _ in range(3):
+            drive.withStop(0, -100, .5)
+            drive.withStop(-80, 0, .5)
+        drive.withStop(0, 50, .5)
+        drive.withStop(50, 50, 1)
+        drive.withStop(0, 85, 1.5)   
     '''
     drive.withStop(-30, -30, 2.0)
     
@@ -165,8 +172,12 @@ def scoreRedTribbles():
 def scoreGreenTribbles():
     drive.openGate(c.leftGate)
     driveIntoWall()
+    drive.closeGate(c.leftGate)
+    
+    '''
     drive.withStop(-50, -50, 1.5)
     drive.withStop(0, 50, 2.5)    
+    '''
     
 def getSecondPile(): 
     servo.moveClapper(c.clapperWide, 50)
@@ -178,4 +189,22 @@ def getSecondPile():
     
 def test():
     drive.withStop(65, 50, 15)   
+
+def startToTurnTwo():
+    for _ in range(3):
+        drive.withStop(0, -100, .5)
+        drive.withStop(-80, 0, .5)
+    drive.openGate(leftGate)
+    drive.withStop(0, 50, .5)
+    drive.withStop(50, 50, 1)
+    drive.withStop(0, 85, 1.5)
     
+    
+def thirdDriveIntoWall():
+    # drives forward along a wall until the touch sensor in front bumps into something
+    drive.noStop(55, 50, .05)
+    while link.digital(c.bumper) == 0:
+        pass
+    drive.withStop(0, 0, 0)
+    drive.closeGate(leftGate)
+    print "hit wall again again"
