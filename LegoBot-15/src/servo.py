@@ -8,10 +8,12 @@ import kovan as link
 import constants as c
 
 def testServo():
+    #print "testing clapper"
+    #link.set_servo_position(c.clapper, c.clapperOpen)
+    #time.sleep(1.0)
+    #link.set_servo_position(c.clapper, c.clapperParallel)
     print "testing clapper"
-    link.set_servo_position(c.clapper, c.clapperOpen)
-    time.sleep(1.0)
-    link.set_servo_position(c.clapper, c.clapperParallel)
+    link.set_servo_position(c.clapper, c.clapperWide)
     time.sleep(1.0)
     print "testing sorter"
     link.set_servo_position(c.sorter, c.sorterLeft)

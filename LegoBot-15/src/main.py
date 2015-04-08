@@ -14,18 +14,18 @@ def main() :
     #return
 
     act.init()
-
+    
     act.getOutOfStartBox()
     
     act.getToMidLine()
     
     act.crossBump()
-   
+    
+    #act.aimForCorner()
+    
     act.sortAndGo(6) # 6 crashes into wall
 
     act.driveIntoWall()
-    
-    act.DEBUG("Stop")
     
     act.startToTurn()
     
@@ -37,11 +37,13 @@ def main() :
      
     act.secondDriveIntoWall()
 
-    act.startToTurn()
-    
+    act.startToTurnTwo()
 
     act.scoreGreenTribbles()
-    act.startToTurnTwo()
+    
+    act.DEBUG("Stop")
+    
+    #act.startToTurnTwo()
     act.driveIntoWall()
     # act.getOutOfCorner()
     

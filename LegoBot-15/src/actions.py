@@ -14,7 +14,6 @@ import drive
 import servo
 import sensor
 import time
-from constants import rightGate, leftGate
 
 
 def init() :
@@ -36,16 +35,18 @@ def init() :
         print "Running Clone"
 
 
-    # wait for light
+    #link.wait for light()
+    time.sleep(2)
 
 def getOutOfStartBox() :    
     
-    drive.withStop(30, 0, .750)
+    #drive.withStop(30, 0, .750)
+    drive.withStop(0, 75, .25)
     
-    if c.isPrime:
-        drive.withStop(50, -65, 1.75)
-    else: 
-        drive.withStop(50, -50, 1.65)# was 1.45
+    #if c.isPrime:
+        #drive.withStop(50, -65, 1.75)
+    #else: 
+        #drive.withStop(50, -50, 1.65)# was 1.45
     
    
     
@@ -60,8 +61,11 @@ def getOutOfStartBox() :
         drive.withStop(-50, 50, .5)
     
 def getToMidLine():
-    drive.noStop(25, 25, .25)
-    servo.moveClapper(c.clapperParallel, 5)
+    if c.isPrime:
+        drive.noStop(25, 50, 1.0)
+    else:
+        drive.noStop(25, 35, 1.0)
+    #servo.moveClapper(c.clapperParallel, 5)
     drive.withStop(0, 0, 0) 
 
 def crossBump():
@@ -73,6 +77,9 @@ def crossBump():
         drive.withStop(45, 0, .35)
     
     servo.moveClapper(c.clapperParallel)
+    
+def aimForCorner():
+    drive.withStop(65, 25, 1.0)
 
 def sortAndGo(num):
     # drives while opening and closing Clapper, 
@@ -90,9 +97,10 @@ def sortAndGo(num):
             print "wiggle"
             servo.moveClapper(c.clapperDrive, 200)
             drive.withStop(-50, 25, .5)
-            servo.moveClapper(c.clapperClosed, 200)
+            servo.moveClapper(c.clapperOpen, 150) #200 #was closed
             drive.withStop(50, -25, .65)
             drive.noStop( 55, 50, .3)
+            servo.moveClapper(c.clapperClosed)
             #DEBUG("Stop")
         drive.noStop( 55, 50, .5)
     
@@ -136,9 +144,9 @@ def startToTurn():
         drive.withStop(0, 85, 1.5)
     else:
         for _ in range(3):
-            drive.withStop(0, -100, .5)
-            drive.withStop(-80, 0, .5)
-        drive.withStop(0, 50, .5)
+            drive.withStop(0, -80, .5)
+            drive.withStop(-60, 0, .5)
+        drive.withStop(0, 50, .5) # needs to be more
         drive.withStop(50, 50, 1)
         drive.withStop(0, 85, 1.5)   
     '''
@@ -171,6 +179,7 @@ def scoreRedTribbles():
     
 def scoreGreenTribbles():
     drive.openGate(c.leftGate)
+    DEBUG() #prime needs to be further down
     driveIntoWall()
     drive.closeGate(c.leftGate)
     
@@ -182,22 +191,30 @@ def scoreGreenTribbles():
 def getSecondPile(): 
     servo.moveClapper(c.clapperWide, 50)
     drive.withStop(50, 65, 2)
-    drive.closeGate(rightGate)    
+    drive.closeGate(c.rightGate)
+    crossBump()    
     drive.withStop(65, 50, 4)
-    servo.moveClapper(c.clapperParallel)
+    servo.moveClapper(c.clapperClosed, 5)
 
     
 def test():
     drive.withStop(65, 50, 15)   
 
 def startToTurnTwo():
-    for _ in range(3):
-        drive.withStop(0, -100, .5)
-        drive.withStop(-80, 0, .5)
-    drive.openGate(leftGate)
-    drive.withStop(0, 50, .5)
-    drive.withStop(50, 50, 1)
-    drive.withStop(0, 85, 1.5)
+    if c.isPrime:
+        for _ in range(3):
+            drive.withStop(0, -100, .5)
+            drive.withStop(-80, 0, .5)
+        drive.withStop(0, 50, .5)
+        drive.withStop(50, 50, 1)
+        drive.withStop(0, 85, 1.5)
+    else:
+        for _ in range(3):
+            drive.withStop(0, -100, .5)
+            drive.withStop(-80, 0, .5)
+        drive.withStop(0, 50, .5)
+        drive.withStop(50, 50, 1)
+        drive.withStop(0, 85, 1.5)
     
     
 def thirdDriveIntoWall():
@@ -206,5 +223,5 @@ def thirdDriveIntoWall():
     while link.digital(c.bumper) == 0:
         pass
     drive.withStop(0, 0, 0)
-    drive.closeGate(leftGate)
+    drive.closeGate(c.leftGate)
     print "hit wall again again"
