@@ -41,6 +41,9 @@ def sortTribble() :
         print "moveKicker"
         servo.moveKicker( c.kickerOut, 2000 )
         time.sleep(0.4) #0.5
+        servo.moveSorter( c.sorterCenter ,200)
+        servo.moveKicker( c.kickerReady, 2000 )
+        time.sleep(0.1)#was .5
         found = 1
         
     elif link.get_object_area(c.chanRed, 0 ) >= c.blobSize:
@@ -53,15 +56,16 @@ def sortTribble() :
         print "moveKicker"
         servo.moveKicker( c.kickerOut, 2000 )
         time.sleep(0.4) #0.5
+        servo.moveSorter( c.sorterCenter ,200)
+        servo.moveKicker( c.kickerReady, 2000 )
+        time.sleep(0.1) #was .5
         found = 1
         
     else:
         print "nothing found"
         found = 0
        
-    servo.moveSorter( c.sorterCenter ,200)
-    servo.moveKicker( c.kickerReady, 2000 )
-    time.sleep(0.5)
+    
     return found
     
 
