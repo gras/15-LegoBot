@@ -42,37 +42,16 @@ def getOutOfStartBox() :
     drive.withStop(0, 75, .25)
     drive.withStop(50, 50, 0.7)
     servo.moveClapper (c.clapperWide, 50)
+    drive.withStop(50, 50, 4)
     
-    if c.isPrime:
-        drive.withStop(50, 50, 4)
-    else:
-        drive.withStop(50, 65, 3)
-        drive.withStop(-50, 50, .5)
-        
 def getToMidLine():
-    if c.isPrime:
-        drive.noStop(25, 50, 1.0)
-    else:
-        drive.noStop(25, 35, 1.0)
-    #servo.moveClapper(c.clapperParallel, 5)
-    drive.withStop(0, 0, 0) 
-
+    drive.withStop(25, 50, 1.0)
+    
 def crossBumpNorth():
     servo.moveClapper(c.clapperClosed)
-    if c.isPrime:
-        drive.withStop(90, 90, 1.60) 
-    else:
-        drive.withStop(90, 90, 1.30)
-        drive.withStop(45, 0, .35)
-    
+    drive.withStop(90, 90, 1.60) 
     servo.moveClapper(c.clapperParallel)
     
-    servo.moveClapper(c.clapperParallel)
-    
-def beginToScoreGreen():
-    drive.withStop(50, 30, .5)
-    drive.withStop(30, 50, .5)
-
 def sortAndGo(num):
     # drives while opening and closing Clapper, 
     # then stops to sort tribbles
@@ -95,51 +74,15 @@ def sortAndGo(num):
             servo.moveClapper(c.clapperClosed)
             #DEBUG("Stop")
         drive.noStop( 55, 50, .5)
-    
     sensor.sortTribble()
-    
-def getOutOfCorner():
-    drive.withStop(25, 25, 2) 
-    servo.moveClapper(c.clapperTight, 6)
-    drive.withStop(-50,-100, 1.5)
-
-def getOutOfSecondBox():
-    drive.withStop(0, 75, .25)
-    drive.withStop(50, 50, 1.5)
-    servo.moveClapper (c.clapperWide, 50)
-    drive.closeGate(c.rightGate)
-    DEBUG("Stop")
-    if c.isPrime:
-        drive.withStop(50, 50, 3.5) #was 4 
-    else:
-        drive.withStop(50, 65, 3)
-        drive.withStop(-50, 50, .5)
-    drive.closeGate(c.rightGate)
-    
-
-    
-def DEBUG( msg = "DEBUG" ) :
-    link.ao()
-    print msg
-    link.camera_close()
-    exit()
     
 def driveIntoWall():
     # drives forward along a wall until the touch sensor in front bumps into something
-
     drive.noStop(65, 50, .05)
     while link.digital(c.bumper) == 0:
         pass
     drive.withStop(0, 0, 0)
     print "hit wall"
-    
-def secondDriveIntoWall():
-    # drives forward along a wall until the touch sensor in front bumps into something
-    drive.noStop(65, 50, .05)
-    while link.digital(c.bumper) == 0:
-        pass
-    drive.withStop(0, 0, 0)
-    print "hit wall again"
     
 def startToTurn():
     link.set_servo_position(c.clapper, c.clapperTight)
@@ -157,34 +100,28 @@ def startToTurn():
         drive.withStop(0, 50, .5) # needs to be more # was 30
         drive.withStop(50, 50, 1)
         drive.withStop(0, 85, 1.5)   
-    '''
-    drive.withStop(-30, -30, 2.0)
-    
-    
-    #drive.withStop(-60, -25, 1.5)
-    if c.isPrime:
-        drive.withStop(0, -100, 1.0)
-    else:
-        drive.withStop(0, -100, 1.0)#1.5 
-    
-    
-    drive.withStop( -100, 0, 1.0)
-    
-    if c.isPrime:
-        drive.withStop( 75, 75, 0.75)
-        drive.withStop( 20, 100, 1.5)
-    else:
-        drive.withStop( 75, 75, 0.5)
-        drive.withStop( 10, 100, 2.75)
-'''
-
-
-
+        
 def scoreRedTribbles():
     drive.openGate(c.rightGate)
     driveIntoWall()
     drive.withStop(-50, -50, 1.5)
     drive.withStop(0, 50, 2.5)
+    
+def getOutOfSecondBox():
+    DEBUG("Stop")
+    drive.withStop(0, 75, .25)
+    drive.withStop(50, 50, 1.5)
+    servo.moveClapper (c.clapperWide, 50)
+    drive.closeGate(c.rightGate)
+    
+    if c.isPrime:
+        drive.withStop(50, 50, 3.5) #was 4 
+    else:
+        drive.withStop(50, 65, 3)
+        drive.withStop(-50, 50, .5)
+    drive.closeGate(c.rightGate)
+
+
     
 def scoreGreenTribbles():
     drive.openGate(c.leftGate)
@@ -196,7 +133,18 @@ def scoreGreenTribbles():
     drive.withStop(-50, -50, 1.5)
     drive.withStop(0, 50, 2.5)    
     '''
+def secondDriveIntoWall():
+    # drives forward along a wall until the touch sensor in front bumps into something
+    drive.noStop(65, 50, .05)
+    while link.digital(c.bumper) == 0:
+        pass
+    drive.withStop(0, 0, 0)
+    print "hit wall again"
     
+def beginToScoreGreen():
+    drive.withStop(50, 30, .5)
+    drive.withStop(30, 50, .5)
+
 def test():
     drive.withStop(65, 50, 15)   
 
@@ -225,3 +173,9 @@ def thirdDriveIntoWall():
     drive.withStop(0, 0, 0)
     drive.closeGate(c.leftGate)
     print "hit wall again again"
+    
+def DEBUG( msg = "DEBUG" ) :
+    link.ao()
+    print msg
+    link.camera_close()
+    exit()
