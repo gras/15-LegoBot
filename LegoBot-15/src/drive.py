@@ -53,3 +53,7 @@ def closeGate( gateNumber ):
     time.sleep(0.4)
     link.motor(gateNumber, 0)
     
+def holdGateOpen( gateNumber ):
+    link.motor(gateNumber, 25)
+   
+    

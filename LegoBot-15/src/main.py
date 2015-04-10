@@ -16,40 +16,26 @@ def main() :
     act.init()
     
     act.getOutOfStartBox()
-    
     act.getToMidLine()
-    
     act.crossBumpNorth()
-    
-    #act.aimForCorner()
-    
     act.sortAndGo(6) # 6 crashes into wall
-   
     act.driveIntoWall()
     
     act.startToTurn()
-    
-    act.scoreRedTribbles()
-    
+    act.driveIntoWall()
+
     act.getOutOfSecondBox()
-    
-    act.DEBUG()
-    
     act.getToMidLine()
-    
     act.crossBumpNorth()
-     
     act.sortAndGo(6)
-     
-    act.secondDriveIntoWall()
+    act.driveIntoWall()
     
     act.startToTurnTwo()
+    act.driveIntoWall()
     
-    act.beginToScoreGreen()
-
-    act.DEBUG()
-    
-    act.scoreGreenTribbles()
+    act.getOutOfSecondBox()
+    act.crossBumpNorth()
+    act.driveIntoWall()
     
     act.DEBUG("Stop")
     
