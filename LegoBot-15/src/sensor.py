@@ -46,8 +46,8 @@ def sortTribble() :
         time.sleep(0.1)#was .5
         found = 1
         
-    elif link.get_object_area(c.chanRed, 0 ) >= c.blobSize:
-        print "red"
+    elif link.get_object_area(c.chanRed, 0 ) >= c.blobSize or link.get_object_area(c.chanGold, 0 ) >= c.blobSize:
+        print "red/gold"
         print link.get_object_area( c.chanRed, 0 )
         print "moveSorter"  
         servo.moveSorter( c.sorterRight, 100 )

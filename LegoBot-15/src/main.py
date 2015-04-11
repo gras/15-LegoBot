@@ -14,31 +14,30 @@ def main() :
     #return
 
     act.init()
-    
     # ride the east wall
     act.getOutOfStartBox()
-    act.crossBump()
+    act.crossBumpNorth()
     act.sortAndGo(6) # 6 crashes into wall
-    act.driveIntoWall()
+    act.driveIntoWall(7)
     
     # ride the north wall
     act.startToTurn()
-    act.driveIntoWall()
+    act.driveIntoWall(5)
 
     # ride the west wall
     act.getOutOfSecondBox()
-    act.crossBump()
+    act.crossBumpSouth()
     act.sortAndGo(6)
-    act.driveIntoWall()
-    
+    act.driveIntoWall(7)
     # ride the south wall
     act.startToTurnTwo()
-    act.driveIntoWall()
+    act.driveIntoWall(5)
     
     # ride the east wall again 
     act.getOutOfThirdBox()
-    act.crossBump()
-    act.driveIntoWall()
+    act.crossBumpNorth()
+    act.jettison()
+    act.driveIntoWall(10)
     
     # done
     act.DEBUG("Done!")

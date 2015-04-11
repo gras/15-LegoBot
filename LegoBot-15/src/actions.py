@@ -15,6 +15,7 @@ import servo
 import sensor
 import time
 from drive import holdGateClosed
+from servo import moveServo, moveSorter
 
 def init() :
     # set print to unbuffered
@@ -36,7 +37,11 @@ def init() :
 
 
     #link.wait for light()
-    time.sleep(2)
+    # time.sleep(2)
+    print "please press the 'A' button to start"
+    while not link.a_button():
+        pass
+    print "thank you!"
 
 def getOutOfStartBox() :    
     drive.withStop(0, 75, .25)
@@ -44,8 +49,13 @@ def getOutOfStartBox() :
     servo.moveClapper (c.clapperWide, 50)
     drive.withStop(50, 50, 4)
     
-def crossBump():
+def crossBumpNorth():
     drive.withStop(25, 50, 1.0)
+    servo.moveClapper(c.clapperClosed)
+    drive.withStop(90, 90, 1.60) 
+    servo.moveClapper(c.clapperParallel)
+
+def crossBumpSouth():
     servo.moveClapper(c.clapperClosed)
     drive.withStop(90, 90, 1.60) 
     servo.moveClapper(c.clapperParallel)
@@ -64,6 +74,9 @@ def sortAndGo(num):
             print "poms sorted", pomsSorted
         else:
             print "wiggle"
+            servo.moveSorter(c.sorterRightish, 100)
+            servo.moveSorter(c.sorterLeftish, 100)
+            servo.moveSorter(c.sorterCenter, 100)
             servo.moveClapper(c.clapperDrive, 200)
             drive.withStop(-50, 25, .5)
             servo.moveClapper(c.clapperOpen, 150) #200 #was closed
@@ -73,12 +86,33 @@ def sortAndGo(num):
             #DEBUG("Stop")
         drive.noStop( 55, 50, .5)
     sensor.sortTribble()
-    
-def driveIntoWall():
+
+def jettison():
+    while True: 
+        find = sensor.sortTribble()
+        if find:
+            print "pom found"
+            servo.moveSorter(c.sorterRightish, 100)
+            servo.moveSorter(c.sorterLeftish, 100)
+            servo.moveSorter(c.sorterCenter, 100)
+            servo.moveClapper(c.clapperDrive, 200)
+            drive.withStop(-50, 25, .5)
+            servo.moveClapper(c.clapperOpen, 150)
+            drive.withStop(50, -25, .65)
+            drive.noStop( 55, 50, .3)
+            servo.moveClapper(c.clapperClosed)
+            drive.withStop(20, 20, .2)
+        else:
+            print "all good"
+            break 
+
+def driveIntoWall(var):
     # drives forward along a wall until the touch sensor in front bumps into something
     drive.noStop(65, 50, .05)
+    done = link.seconds()+ var
     while link.digital(c.bumper) == 0:
-        pass
+        if link.seconds() > done:
+            break
     drive.withStop(0, 0, 0)
     print "hit wall"
 
@@ -104,7 +138,7 @@ def getOutOfSecondBox():
     drive.withStop(-50, -50, 1.5)
     drive.withStop(0, 50, 2.5)
     servo.moveClapper (c.clapperWide, 50)
-    drive.withStop(0, 50, .25) #50-75
+    drive.withStop(0, 50, .25)
     drive.withStop(70, 50, 2.65)
     drive.closeGate(c.rightGate)
     
@@ -118,11 +152,10 @@ def getOutOfSecondBox():
 def getOutOfThirdBox():
     drive.holdGateClosed(c.rightGate)
     drive.withStop(-50, -50, 1.5)
-    drive.withStop(0, 50, 2.5)
-    servo.moveClapper (c.clapperWide, 50)
-    drive.withStop(0, 50, 2.5) #50-75
+    drive.withStop(0, 100, 2)
+    # servo.moveClapper (c.clapperWide, 50)
+    # drive.withStop(0, 50, 2.5)
     drive.withStop(70, 50, 2.65)
-    drive.closeGate(c.rightGate)
     if c.isPrime:
         drive.withStop(50, 50, 1.5) #was 4 
     else:

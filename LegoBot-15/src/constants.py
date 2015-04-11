@@ -43,6 +43,8 @@ clapperTight = 915
 sorterLeft = 0
 sorterRight = 2047
 sorterCenter = 885 #840
+sorterRightish = ((sorterRight-sorterCenter)/2)+sorterCenter
+sorterLeftish = sorterCenter-((sorterCenter-sorterCenter)/2)
 
 # kicker positions
 #kickerBack = 400 #650
