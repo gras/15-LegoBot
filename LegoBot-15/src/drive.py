@@ -56,4 +56,5 @@ def closeGate( gateNumber ):
 def holdGateOpen( gateNumber ):
     link.motor(gateNumber, 25)
    
-    
+def holdGateClosed( gateNumber ):
+    link.motor(gateNumber, -25)

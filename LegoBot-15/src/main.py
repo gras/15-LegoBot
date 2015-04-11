@@ -15,36 +15,33 @@ def main() :
 
     act.init()
     
+    # ride the east wall
     act.getOutOfStartBox()
-    act.getToMidLine()
-    act.crossBumpNorth()
+    act.crossBump()
     act.sortAndGo(6) # 6 crashes into wall
     act.driveIntoWall()
     
+    # ride the north wall
     act.startToTurn()
     act.driveIntoWall()
 
+    # ride the west wall
     act.getOutOfSecondBox()
-    act.getToMidLine()
-    act.crossBumpNorth()
+    act.crossBump()
     act.sortAndGo(6)
     act.driveIntoWall()
     
+    # ride the south wall
     act.startToTurnTwo()
     act.driveIntoWall()
     
-    act.getOutOfSecondBox()
-    act.crossBumpNorth()
+    # ride the east wall again 
+    act.getOutOfThirdBox()
+    act.crossBump()
     act.driveIntoWall()
     
-    act.DEBUG("Stop")
-    
-    #act.startToTurnTwo()
-    act.driveIntoWall()
-    # act.getOutOfCorner()
-    
-    #act.DEBUG("Stop")
-    
+    # done
+    act.DEBUG("Done!")
     
 if __name__ == "__main__":
     main()

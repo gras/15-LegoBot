@@ -29,6 +29,7 @@ ETPort = 0
 #color channels    0 = green     1 = red
 chanGreen = 0
 chanRed = 1 
+chanGold = 2
  
 # servo positions
 clapperWide = 100

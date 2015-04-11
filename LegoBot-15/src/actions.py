@@ -14,9 +14,7 @@ import drive
 import servo
 import sensor
 import time
-from kovan import msleep
-from time import sleep
-
+from drive import holdGateClosed
 
 def init() :
     # set print to unbuffered
@@ -46,10 +44,8 @@ def getOutOfStartBox() :
     servo.moveClapper (c.clapperWide, 50)
     drive.withStop(50, 50, 4)
     
-def getToMidLine():
+def crossBump():
     drive.withStop(25, 50, 1.0)
-    
-def crossBumpNorth():
     servo.moveClapper(c.clapperClosed)
     drive.withStop(90, 90, 1.60) 
     servo.moveClapper(c.clapperParallel)
@@ -109,18 +105,34 @@ def getOutOfSecondBox():
     drive.withStop(0, 50, 2.5)
     servo.moveClapper (c.clapperWide, 50)
     drive.withStop(0, 50, .25) #50-75
-    drive.withStop(70, 50, 1.5)
-    #servo.moveClapper (c.clapperWide, 50)
+    drive.withStop(70, 50, 2.65)
     drive.closeGate(c.rightGate)
     
     if c.isPrime:
-        drive.withStop(50, 50, 3.5) #was 4 
+        drive.withStop(50, 50, 1.5) #was 4 
     else:
         drive.withStop(50, 65, 3)
         drive.withStop(-50, 50, .5)
     drive.closeGate(c.rightGate)
+
+def getOutOfThirdBox():
+    drive.holdGateClosed(c.rightGate)
+    drive.withStop(-50, -50, 1.5)
+    drive.withStop(0, 50, 2.5)
+    servo.moveClapper (c.clapperWide, 50)
+    drive.withStop(0, 50, 2.5) #50-75
+    drive.withStop(70, 50, 2.65)
+    drive.closeGate(c.rightGate)
+    if c.isPrime:
+        drive.withStop(50, 50, 1.5) #was 4 
+    else:
+        drive.withStop(50, 65, 3)
+        drive.withStop(-50, 50, .5)
+    drive.closeGate(c.rightGate)
+    # drive.withStop(50, 50, 4)
     
 def startToTurnTwo():
+    # back out of corner
     for _ in range(3):
         servo.moveClapper (c.clapperTight, 50)
         drive.withStop(0, -100, .5)
@@ -129,9 +141,11 @@ def startToTurnTwo():
     drive.withStop(50, 50, 1)
     drive.withStop(0, 85, 1.5)
     drive.withStop(-30, 30, .7)
+    # drive backwards into wall
     drive.withStop(-30, -30, 1)
-    drive.withStop(0, -60, .5)
+    drive.withStop(0, -60, 1.5)
     drive.holdGateOpen(c.leftGate)
+    drive.withStop(60, 20, 2)
    
 def thirdDriveIntoWall():
     # drives forward along a wall until the touch sensor in front bumps into something
@@ -141,6 +155,10 @@ def thirdDriveIntoWall():
     drive.withStop(0, 0, 0)
     drive.closeGate(c.leftGate)
     print "hit wall again again"
+
+def pause():
+    print "pause"
+    time.sleep(7)
 
 def DEBUG( msg = "DEBUG" ) :
     link.ao()
