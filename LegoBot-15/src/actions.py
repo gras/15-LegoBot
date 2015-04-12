@@ -42,7 +42,7 @@ def init() :
         pass
     print "thank you!"
     
-    link.wait_for_light(0)
+    # link.wait_for_light(0)
     
     link.enable_servos()
         
@@ -90,6 +90,69 @@ def sortAndGo(num):
         drive.noStop( 55, 50, .5)
     sensor.sortTribble()
 
+def driveIntoWall(var):
+    # drives forward along a wall until the touch sensor in front bumps into something
+    drive.noStop(65, 50, .05)
+    done = link.seconds()+ var
+    while link.digital(c.bumper) == 0:
+        if link.seconds() > done:
+            break
+    drive.withStop(0, 0, 0)
+    print "hit wall"
+
+def startToTurn():
+    link.set_servo_position(c.clapper, c.clapperTight)  
+    for _ in range(3):
+        drive.withStop(0, -100, .5)
+        drive.withStop(-80, 0, .5)
+    drive.withStop(0, 50, .5)
+    drive.withStop(50, 50, 1)
+    drive.withStop(0, 85, 1.5)
+    drive.openGate(c.rightGate)
+      
+def getOutOfSecondBox():
+    drive.withStop(-50, -50, 1.5)
+    drive.withStop(0, 50, 2.5)
+    servo.moveClapper (c.clapperWide, 50)
+    drive.withStop(0, 50, .25)
+    drive.withStop(70, 50, 2.65)
+    drive.closeGate(c.rightGate)
+    drive.withStop(50, 50, 1.5) #was 4 
+    drive.closeGate(c.rightGate)
+
+def getOutOfThirdBox():
+    drive.holdGateClosed(c.rightGate)
+    drive.withStop(-50, -50, 1.5)
+    drive.withStop(0, 100, 2)
+    # servo.moveClapper (c.clapperWide, 50)
+    # drive.withStop(0, 50, 2.5)
+    drive.withStop(70, 50, 2.65)
+    if c.isPrime:
+        drive.withStop(50, 50, 1.5) #was 4 
+    '''
+    else:
+        drive.withStop(50, 65, 3)
+        drive.withStop(-50, 50, .5)
+    '''
+    drive.closeGate(c.rightGate)
+    # drive.withStop(50, 50, 4)
+    
+def startToTurnTwo():
+    # back out of corner
+    for _ in range(3):
+        servo.moveClapper (c.clapperTight, 50)
+        drive.withStop(0, -100, .5)
+        drive.withStop(-80, 0, .5)
+    drive.withStop(0, 50, .5)
+    drive.withStop(50, 50, 1)
+    drive.withStop(0, 85, 1.5)
+    drive.withStop(-30, 30, .7)
+    # drive backwards into wall
+    drive.withStop(-30, -30, 1)
+    drive.withStop(0, -60, 1.5)
+    drive.holdGateOpen(c.leftGate)
+    drive.withStop(60, 20, 2)
+
 def jettison():
     while True: 
         find = sensor.sortTribble()
@@ -109,80 +172,6 @@ def jettison():
             print "all good"
             break 
 
-def driveIntoWall(var):
-    # drives forward along a wall until the touch sensor in front bumps into something
-    drive.noStop(65, 50, .05)
-    done = link.seconds()+ var
-    while link.digital(c.bumper) == 0:
-        if link.seconds() > done:
-            break
-    drive.withStop(0, 0, 0)
-    print "hit wall"
-
-def startToTurn():
-    link.set_servo_position(c.clapper, c.clapperTight)
-    if c.isPrime:
-        for _ in range(3):
-            drive.withStop(0, -100, .5)
-            drive.withStop(-80, 0, .5)
-        drive.withStop(0, 50, .5)
-        drive.withStop(50, 50, 1)
-        drive.withStop(0, 85, 1.5)
-    else:
-        for _ in range(3):
-            drive.withStop(0, -100, .5)
-            drive.withStop(-80, 0, .5)
-        drive.withStop(0, 50, .5) # needs to be more # was 30
-        drive.withStop(50, 50, 1)
-        drive.withStop(0, 85, 1.5)   
-    drive.openGate(c.rightGate)
-      
-def getOutOfSecondBox():
-    drive.withStop(-50, -50, 1.5)
-    drive.withStop(0, 50, 2.5)
-    servo.moveClapper (c.clapperWide, 50)
-    drive.withStop(0, 50, .25)
-    drive.withStop(70, 50, 2.65)
-    drive.closeGate(c.rightGate)
-    
-    if c.isPrime:
-        drive.withStop(50, 50, 1.5) #was 4 
-    else:
-        drive.withStop(50, 65, 3)
-        drive.withStop(-50, 50, .5)
-    drive.closeGate(c.rightGate)
-
-def getOutOfThirdBox():
-    drive.holdGateClosed(c.rightGate)
-    drive.withStop(-50, -50, 1.5)
-    drive.withStop(0, 100, 2)
-    # servo.moveClapper (c.clapperWide, 50)
-    # drive.withStop(0, 50, 2.5)
-    drive.withStop(70, 50, 2.65)
-    if c.isPrime:
-        drive.withStop(50, 50, 1.5) #was 4 
-    else:
-        drive.withStop(50, 65, 3)
-        drive.withStop(-50, 50, .5)
-    drive.closeGate(c.rightGate)
-    # drive.withStop(50, 50, 4)
-    
-def startToTurnTwo():
-    # back out of corner
-    for _ in range(3):
-        servo.moveClapper (c.clapperTight, 50)
-        drive.withStop(0, -100, .5)
-        drive.withStop(-80, 0, .5)
-    drive.withStop(0, 50, .5)
-    drive.withStop(50, 50, 1)
-    drive.withStop(0, 85, 1.5)
-    drive.withStop(-30, 30, .7)
-    # drive backwards into wall
-    drive.withStop(-30, -30, 1)
-    drive.withStop(0, -60, 1.5)
-    drive.holdGateOpen(c.leftGate)
-    drive.withStop(60, 20, 2)
-   
 def thirdDriveIntoWall():
     # drives forward along a wall until the touch sensor in front bumps into something
     drive.noStop(55, 50, .05)
