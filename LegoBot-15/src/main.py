@@ -29,6 +29,7 @@ def main() :
     act.crossBumpSouth()
     act.sortAndGo(6)
     act.driveIntoWall(7)
+    
     # ride the south wall
     act.startToTurnTwo()
     act.driveIntoWall(5)

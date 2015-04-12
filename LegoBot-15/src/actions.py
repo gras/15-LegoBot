@@ -14,8 +14,6 @@ import drive
 import servo
 import sensor
 import time
-from drive import holdGateClosed
-from servo import moveServo, moveSorter
 
 def init() :
     # set print to unbuffered
@@ -27,22 +25,27 @@ def init() :
     if not link.camera_open():
         DEBUG("camera failed to open") 
     
-    servo.testServo()
+    servo.testServo() 
     drive.testGates()
-
+    link.disable_servos()
+    
     if c.isPrime :
         print "Running Prime"
     else :
         print "Running Clone"
 
 
-    #link.wait for light()
     # time.sleep(2)
+    
     print "please press the 'A' button to start"
     while not link.a_button():
         pass
     print "thank you!"
-
+    
+    link.wait_for_light(0)
+    
+    link.enable_servos()
+        
 def getOutOfStartBox() :    
     drive.withStop(0, 75, .25)
     drive.withStop(50, 50, 0.7)
