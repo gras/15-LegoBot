@@ -13,7 +13,8 @@ def testServo():
     #time.sleep(1.0)
     #link.set_servo_position(c.clapper, c.clapperParallel)
     print "testing clapper"
-    link.set_servo_position(c.clapper, c.clapperParallel)
+    link.set_servo_position(c.clapper, c.clapperTight)
+    time.sleep(1.0)
     link.set_servo_position(c.clapper, c.clapperWide)
     time.sleep(1.0)
     print "testing sorter"

@@ -42,8 +42,8 @@ def init() :
         pass
     print "thank you!"
     
-    # link.wait_for_light(0)
-    
+    link.wait_for_light(0)
+    link.shut_down_in(119.0)
     link.enable_servos()
         
 def getOutOfStartBox() :    
@@ -123,7 +123,8 @@ def getOutOfSecondBox():
 def getOutOfThirdBox():
     drive.holdGateClosed(c.rightGate)
     drive.withStop(-50, -50, 1.5)
-    drive.withStop(0, 100, 2)
+    drive.withStop(-20, 80, .5)
+    drive.withStop(0, 100, 1.5)
     # servo.moveClapper (c.clapperWide, 50)
     # drive.withStop(0, 50, 2.5)
     drive.withStop(70, 50, 2.65)

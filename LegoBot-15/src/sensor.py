@@ -30,6 +30,7 @@ def sortTribble() :
     link.camera_update()
     time.sleep (0.5) #pause for both camera and wait for robot motion to completely stop
     link.camera_update()
+    print "camera updated"
     found = 0
     if link.get_object_area( c.chanGreen, 0 ) >= c.blobSize:
         print "green"
