@@ -60,6 +60,7 @@ gateClose = 900 #480
 #camera
 blobSize = 2000
 
+startTime = 0
 
 isClone = link.digital(clonePort)
 isPrime = not isClone      
@@ -81,7 +82,7 @@ if isClone:
     
     # kicker positions
     #kickerBack = 400 #650
-    kickerReady = 400 #1300
+    kickerReady = 500 #400
     kickerOut = 1100 #1850
  
     #gate positions

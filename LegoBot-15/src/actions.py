@@ -15,6 +15,8 @@ import servo
 import sensor
 import time
 
+ 
+
 def init() :
     # set print to unbuffered
     sys.stdout = os.fdopen(sys.stdout.fileno(),'w',0)
@@ -44,6 +46,7 @@ def init() :
     
     link.wait_for_light(0)
     link.shut_down_in(119.0)
+    c.startTime = link.seconds()
     link.enable_servos()
         
 def getOutOfStartBox() :    
@@ -53,11 +56,18 @@ def getOutOfStartBox() :
     drive.withStop(50, 50, 4)
     
 def crossBumpNorth():
-    drive.withStop(25, 50, 1.0)
-    servo.moveClapper(c.clapperClosed)
-    drive.withStop(90, 90, 1.60) 
-    servo.moveClapper(c.clapperParallel)
 
+    if c.isPrime:   
+        drive.withStop(25, 50, 1.0)
+        servo.moveClapper(c.clapperClosed)
+        drive.withStop(90, 90, 1.60) 
+        servo.moveClapper(c.clapperParallel)    
+    else:
+        drive.withStop(25, 50, 1.0)
+        servo.moveClapper(c.clapperClosed)
+        drive.withStop(100, 90, 1.60) 
+        servo.moveClapper(c.clapperParallel)  
+    
 def crossBumpSouth():
     servo.moveClapper(c.clapperClosed)
     drive.withStop(90, 90, 1.60) 
@@ -110,15 +120,14 @@ def startToTurn():
     drive.withStop(0, 85, 1.5)
     drive.openGate(c.rightGate)
       
-def getOutOfSecondBox():
+def getOutOfSecondBox(): 
     drive.withStop(-50, -50, 1.5)
-    drive.withStop(0, 50, 2.5)
+    drive.withStop(0, 65, 2.5)
     servo.moveClapper (c.clapperWide, 50)
-    drive.withStop(0, 50, .25)
+    # drive.withStop(0, 50, .25)
     drive.withStop(70, 50, 2.65)
     drive.closeGate(c.rightGate)
     drive.withStop(50, 50, 1.5) #was 4 
-    drive.closeGate(c.rightGate)
 
 def getOutOfThirdBox():
     drive.holdGateClosed(c.rightGate)
@@ -127,14 +136,16 @@ def getOutOfThirdBox():
     drive.withStop(0, 100, 1.5)
     # servo.moveClapper (c.clapperWide, 50)
     # drive.withStop(0, 50, 2.5)
-    drive.withStop(70, 50, 2.65)
+    
     if c.isPrime:
+        drive.withStop(70, 50, 2.65)
         drive.withStop(50, 50, 1.5) #was 4 
-    '''
+    
     else:
-        drive.withStop(50, 65, 3)
-        drive.withStop(-50, 50, .5)
-    '''
+        drive.withStop(0, 100, .5)
+        drive.withStop(70, 50, 2.65)
+        drive.withStop(50, 60, 1.5)
+    
     drive.closeGate(c.rightGate)
     # drive.withStop(50, 50, 4)
     
@@ -191,3 +202,8 @@ def DEBUG( msg = "DEBUG" ) :
     print msg
     link.camera_close()
     exit()
+
+def shutdown():
+    link.ao()
+    print "elapsed time:" 
+    print link.seconds() - c.startTime

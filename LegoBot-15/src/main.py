@@ -38,6 +38,7 @@ def main() :
     act.driveIntoWall(10)
     
     # done
+    act.shutdown()
     act.DEBUG("Done!")
     
 if __name__ == "__main__":
