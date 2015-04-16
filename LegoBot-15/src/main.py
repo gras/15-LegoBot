@@ -36,9 +36,11 @@ def main() :
     act.crossBumpNorth()
     act.jettison()
     act.driveIntoWall(10)
+    act.theWiggleMove()
     
     # done
     act.shutdown()
+    act.kill()
     act.DEBUG("Done!")
     
 if __name__ == "__main__":

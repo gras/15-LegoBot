@@ -18,6 +18,12 @@ import time
  
 
 def init() :
+    # fix crash caused by unclean camera calls
+    '''
+    from subprocess import call
+    call(["killall","python"])
+    print "cleaned camera code"
+    '''
     # set print to unbuffered
     sys.stdout = os.fdopen(sys.stdout.fileno(),'w',0)
     
@@ -30,7 +36,7 @@ def init() :
     servo.testServo() 
     drive.testGates()
     link.disable_servos()
-    
+    # print "camera code is cleaned!"
     if c.isPrime :
         print "Running Prime"
     else :
@@ -193,6 +199,14 @@ def thirdDriveIntoWall():
     drive.closeGate(c.leftGate)
     print "hit wall again again"
 
+def theWiggleMove():
+    print "wiggle?"
+    time.sleep(.5)
+    drive.withStop(20, -20, .4)
+    drive.withStop(-20, 20, .4)
+    drive.withStop(20, 20, .4)
+    print "wiggle complete?"
+
 def pause():
     print "pause"
     time.sleep(7)
@@ -207,3 +221,8 @@ def shutdown():
     link.ao()
     print "elapsed time:" 
     print link.seconds() - c.startTime
+
+def kill():
+    from subprocess import call
+    call(["killall","python"])
+    print "cleaned camera code"
