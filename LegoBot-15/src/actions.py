@@ -45,9 +45,11 @@ def init() :
 
     # time.sleep(2)
     
-    print "please press the 'A' button to start"
-    while not link.a_button():
+    print "Press the A button to start or the B button to exit"
+    while not link.a_button() and not link.b_button():
         pass
+    if link.b_button_clicked():
+        DEBUG("exited")
     print "thank you!"
     
     link.wait_for_light(0)
