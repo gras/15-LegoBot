@@ -192,14 +192,15 @@ def jettison():
             print "all good"
             break 
 
-def thirdDriveIntoWall():
+def thirdDriveIntoWall(var):
     # drives forward along a wall until the touch sensor in front bumps into something
-    drive.noStop(55, 50, .05)
+    drive.noStop(100, 100, .05)
+    done = link.seconds()+ var
     while link.digital(c.bumper) == 0:
-        pass
+        if link.seconds() > done:
+            break
     drive.withStop(0, 0, 0)
-    drive.closeGate(c.leftGate)
-    print "hit wall again again"
+    print "hit wall"
 
 def theWiggleMove():
     print "wiggle?"

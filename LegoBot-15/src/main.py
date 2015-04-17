@@ -17,7 +17,7 @@ def main() :
     act.sortAndGo(6) # 6 crashes into wall
     act.driveIntoWall(7)
     
-    # ride the north wall
+    # ride the m wall
     act.startToTurn()
     act.driveIntoWall(5)
 
@@ -35,7 +35,7 @@ def main() :
     act.getOutOfThirdBox()
     act.crossBumpNorth()
     act.jettison()
-    act.driveIntoWall(10)
+    act.thirdDriveIntoWall(10)
     act.theWiggleMove()
     
     # done
