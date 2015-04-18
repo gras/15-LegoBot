@@ -35,7 +35,7 @@ def main() :
     act.getOutOfThirdBox()
     act.crossBumpNorth()
     act.jettison()
-    act.thirdDriveIntoWall(10)
+    act.driveIntoWall(10)
     act.theWiggleMove()
     
     # done
