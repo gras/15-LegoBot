@@ -17,7 +17,7 @@ def main() :
     act.sortAndGo(6) # 6 crashes into wall
     act.driveIntoWall(7)
     
-    # ride the north wall
+    # ride the m wall
     act.startToTurn()
     act.driveIntoWall(5)
 
