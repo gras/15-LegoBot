@@ -29,6 +29,7 @@ def main() :
     
     # ride the south wall
     act.startToTurnTwo()
+    act.DEBUG()
     act.driveIntoWall(5)
     
     # ride the east wall again 

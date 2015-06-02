@@ -52,7 +52,7 @@ def init() :
         DEBUG("exited")
     print "thank you!"
     
-    link.wait_for_light(0)
+    #link.wait_for_light(0)
     link.shut_down_in(119.0)
     c.startTime = link.seconds()
     link.enable_servos()
@@ -120,17 +120,23 @@ def driveIntoWall(var):
 
 def startToTurn():
     link.set_servo_position(c.clapper, c.clapperTight)  
-    for _ in range(3):
+    '''for _ in range(3):
         drive.withStop(0, -100, .5)
-        drive.withStop(-80, 0, .5)
-    drive.withStop(0, 50, .5)
+        drive.withStop(-80, 0, .5)'''
+    '''drive.withStop(0, 50, .5)
     drive.withStop(50, 50, 1)
-    drive.withStop(0, 85, 1.5)
+    drive.withStop(0, 85, 1.5)'''
+    drive.withStop(-50, -50, 1)
+    drive.withStop(-50, 0, .7)
+    drive.withStop(0, 100, 1.2)
     drive.openGate(c.rightGate)
       
 def getOutOfSecondBox(): 
-    drive.withStop(-50, -50, 1.5)
-    drive.withStop(0, 65, 2.5)
+    #drive.withStop(-50, -50, 1)
+    #drive.withStop(0, 65, 2.5)
+    drive.withStop(-50, -50, 1)
+    drive.withStop(-50, 0, .7)
+    drive.withStop(0, 100, 1.2)
     servo.moveClapper (c.clapperWide, 50)
     # drive.withStop(0, 50, .25)
     drive.withStop(70, 50, 2.65)
@@ -159,6 +165,7 @@ def getOutOfThirdBox():
     
 def startToTurnTwo():
     # back out of corner
+    '''
     for _ in range(3):
         servo.moveClapper (c.clapperTight, 50)
         drive.withStop(0, -100, .5)
@@ -172,6 +179,17 @@ def startToTurnTwo():
     drive.withStop(0, -60, 1.5)
     drive.holdGateOpen(c.leftGate)
     drive.withStop(60, 20, 2)
+    '''
+    servo.moveClapper (c.clapperTight, 50)
+    drive.withStop(-50, -50, 1)
+    drive.withStop(-50, 0, .7)
+    drive.withStop(0, 100, 1.2)
+    drive.withStop(60, 0, .5)
+    drive.withStop(0, 60, .6)
+    drive.withStop(-60, 0, .5)
+    drive.withStop(-60, -60, 1)
+    drive.holdGateOpen(c.leftGate)
+    drive.withStop(50, 50, .5)
 
 def jettison():
     while True: 
