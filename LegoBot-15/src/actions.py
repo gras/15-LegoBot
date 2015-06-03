@@ -58,6 +58,8 @@ def init() :
     link.enable_servos()
         
 def getOutOfStartBox() :    
+    drive.holdGateClosed(c.rightGate)
+    drive.holdGateClosed(c.leftGate)
     drive.withStop(0, 75, .25)
     drive.withStop(50, 50, 0.7)
     servo.moveClapper (c.clapperWide, 50)
@@ -66,10 +68,12 @@ def getOutOfStartBox() :
 def crossBumpNorth():
 
     if c.isPrime:   
-        drive.withStop(25, 50, 1.0)
+        #drive.withStop(25, 50, 1.0)
+        drive.withStop(35, 40, 1.0)
         servo.moveClapper(c.clapperClosed)
         drive.withStop(90, 90, 1.60) 
-        servo.moveClapper(c.clapperParallel)    
+        servo.moveClapper(c.clapperParallel)
+        drive.withStop(35, 0, .4) 
     else:
         drive.withStop(25, 50, 1.0)
         servo.moveClapper(c.clapperClosed)
@@ -137,9 +141,10 @@ def getOutOfSecondBox():
     drive.withStop(-50, -50, 1)
     drive.withStop(-50, 0, .7)
     drive.withStop(0, 100, 1.2)
+    drive.withStop(70, 50, .65)
     servo.moveClapper (c.clapperWide, 50)
     # drive.withStop(0, 50, .25)
-    drive.withStop(70, 50, 2.65)
+    drive.withStop(70, 50, 2)
     drive.closeGate(c.rightGate)
     drive.withStop(50, 50, 1.5) #was 4 
 

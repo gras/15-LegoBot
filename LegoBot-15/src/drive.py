@@ -19,7 +19,8 @@ def withStop( leftSpeed, rightSpeed, driveTime) :
     link.motor( c.mLeft, leftSpeed )
     link.motor( c.mRight, rightSpeed )
     time.sleep( driveTime )
-    link.ao()
+    link.motor( c.mLeft, 0 )
+    link.motor( c.mRight, 0 )
 
 def testGates():
     print "testing left gate"
@@ -54,7 +55,7 @@ def closeGate( gateNumber ):
     link.motor(gateNumber, 0)
     
 def holdGateOpen( gateNumber ):
-    link.motor(gateNumber, 25)
+    link.motor(gateNumber, 10)
    
 def holdGateClosed( gateNumber ):
-    link.motor(gateNumber, -25)
+    link.motor(gateNumber, -10)

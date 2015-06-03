@@ -16,6 +16,7 @@ def main() :
     act.crossBumpNorth()
     act.sortAndGo(6) # 6 crashes into wall
     act.driveIntoWall(7)
+    act.DEBUG()
     
     # ride the m wall
     act.startToTurn()
@@ -29,8 +30,8 @@ def main() :
     
     # ride the south wall
     act.startToTurnTwo()
-    act.DEBUG()
     act.driveIntoWall(5)
+    act.DEBUG()
     
     # ride the east wall again 
     act.getOutOfThirdBox()
