@@ -33,8 +33,24 @@ def init() :
     if not link.camera_open():
         DEBUG("camera failed to open") 
     
+    print "testing camera"
+    link.camera_update()
+    time.sleep(.1)
+    link.camera_update()
+    
     servo.testServo() 
+    
+    print "testing camera"
+    link.camera_update()
+    time.sleep(.1)
+    link.camera_update()
     drive.testGates()
+    
+    print "testing camera"
+    link.camera_update()
+    time.sleep(.1)
+    link.camera_update()
+    
     link.disable_servos()
     # print "camera code is cleaned!"
     if c.isPrime :
@@ -149,6 +165,7 @@ def getOutOfSecondBox():
     drive.withStop(50, 50, 1.5) #was 4 
 
 def getOutOfThirdBox():
+    '''
     drive.holdGateClosed(c.rightGate)
     drive.withStop(-50, -50, 1.5)
     drive.withStop(-20, 80, .5)
@@ -167,6 +184,17 @@ def getOutOfThirdBox():
     
     drive.closeGate(c.rightGate)
     # drive.withStop(50, 50, 4)
+    '''
+    
+    drive.withStop(-50, -50, 1)
+    drive.withStop(-50, 0, .7)
+    drive.withStop(-50, 50, .5) 
+    drive.withStop(20, 40, .3)
+    drive.withStop(0, 50, .6)
+    drive.withStop(35, 45, 1.0)
+    
+    drive.withStop(40, 40, 1.0)
+    drive.withStop(90, 90, 2)  
     
 def startToTurnTwo():
     # back out of corner
@@ -194,7 +222,8 @@ def startToTurnTwo():
     drive.withStop(-60, 0, .5)
     drive.withStop(-60, -60, 1)
     drive.holdGateOpen(c.leftGate)
-    drive.withStop(50, 50, .5)
+    drive.withStop(50, 0, .3)
+    drive.withStop(50, 20, .5)
 
 def jettison():
     while True: 
@@ -232,6 +261,10 @@ def theWiggleMove():
     drive.withStop(-20, 20, .4)
     drive.withStop(20, 20, .4)
     print "wiggle complete?"
+
+def spinMove():
+    drive.withStop(-10, -100, 2)
+    drive.withStop(10, 100, 2)
 
 def pause():
     print "pause"

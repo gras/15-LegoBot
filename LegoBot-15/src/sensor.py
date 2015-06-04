@@ -39,8 +39,8 @@ def sortTribble() :
         if link.get_object_center_y(c.chanGreen, 0) >= 90:
             drive.withStop(30, 30, .5)
             link.camera_update()
-            print "new y=", link.get_object_center_y(c.chanGreen, 0)
-            act.DEBUG("bad green alignment")
+            print "*******new y=", link.get_object_center_y(c.chanGreen, 0)
+            #act.DEBUG("bad green alignment")
         print link.get_object_area( c.chanGreen, 0 )
         print "moveSorter"
         servo.moveSorter( c.sorterLeft, 100 )
@@ -56,6 +56,11 @@ def sortTribble() :
         
     elif link.get_object_area(c.chanRed, 0 ) >= c.blobSize or link.get_object_area(c.chanGold, 0 ) >= c.blobSize:
         print "red/gold"
+        print "red, y=", link.get_object_center_y(c.chanRed, 0)
+        if link.get_object_center_y(c.chanRed, 0) >= 90:
+            drive.withStop(30, 30, .5)
+            link.camera_update()
+            print "*******new y=", link.get_object_center_y(c.chanRed, 0)
         print link.get_object_area( c.chanRed, 0 )
         print "moveSorter"  
         servo.moveSorter( c.sorterRight, 100 )
