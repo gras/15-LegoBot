@@ -30,7 +30,7 @@ def getLargestArea():
 def sortTribble() :
     print "sortTribble"
     link.camera_update()
-    time.sleep(.1)
+    time.sleep(.15)
     link.camera_update()
     print "camera updated"
     found = 0

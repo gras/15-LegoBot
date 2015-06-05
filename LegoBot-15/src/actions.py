@@ -68,7 +68,7 @@ def init() :
         DEBUG("exited")
     print "thank you!"
     
-    #link.wait_for_light(0)
+    # link.wait_for_light(0)
     link.shut_down_in(119.0)
     c.startTime = link.seconds()
     link.enable_servos()
@@ -84,7 +84,7 @@ def getOutOfStartBox() :
 def crossBumpNorth():
 
     if c.isPrime:   
-        #drive.withStop(25, 50, 1.0)
+        # drive.withStop(25, 50, 1.0)
         drive.withStop(35, 40, 1.0)
         servo.moveClapper(c.clapperClosed)
         drive.withStop(90, 90, 1.60) 
@@ -98,7 +98,7 @@ def crossBumpNorth():
     
 def crossBumpSouth():
     servo.moveClapper(c.clapperClosed)
-    drive.withStop(90, 90, 1.60) 
+    drive.withStop(100, 90, 1.60) 
     servo.moveClapper(c.clapperParallel)
     
 def sortAndGo(num):
@@ -124,7 +124,7 @@ def sortAndGo(num):
             drive.withStop(50, -25, .65)
             drive.noStop( 55, 50, .3)
             servo.moveClapper(c.clapperClosed)
-            #DEBUG("Stop")
+            # DEBUG("Stop")
         drive.noStop( 55, 50, .5)
     sensor.sortTribble()
 
@@ -152,8 +152,8 @@ def startToTurn():
     drive.openGate(c.rightGate)
       
 def getOutOfSecondBox(): 
-    #drive.withStop(-50, -50, 1)
-    #drive.withStop(0, 65, 2.5)
+    # drive.withStop(-50, -50, 1)
+    # drive.withStop(0, 65, 2.5)
     drive.withStop(-50, -50, 1)
     drive.withStop(-50, 0, .7)
     drive.withStop(0, 100, 1.2)
@@ -190,7 +190,7 @@ def getOutOfThirdBox():
     drive.withStop(-50, 0, .7)
     drive.withStop(-50, 50, .5) 
     drive.withStop(20, 40, .3)
-    drive.withStop(0, 50, .6)
+    drive.withStop(0, 80, .6)
     drive.withStop(35, 45, 1.0)
     
     drive.withStop(40, 40, 1.0)
@@ -257,14 +257,17 @@ def thirdDriveIntoWall(var):
 def theWiggleMove():
     print "wiggle?"
     time.sleep(.5)
+    drive.openGate(c.rightGate)
     drive.withStop(20, -20, .4)
     drive.withStop(-20, 20, .4)
     drive.withStop(20, 20, .4)
     print "wiggle complete?"
 
-def spinMove():
-    drive.withStop(-10, -100, 2)
-    drive.withStop(10, 100, 2)
+def theSpinMove():
+    drive.holdGateClosed(c.leftGate)
+    drive.withStop(100, -100, .5)
+    drive.withStop(-50, -80, 2)
+    drive.withStop(50, 80, 2)
 
 def pause():
     print "pause"

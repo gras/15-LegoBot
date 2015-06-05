@@ -12,9 +12,6 @@ def main() :
 
     act.init()
     
-    act.spinMove()
-    act.DEBUG("SPIN!")
-    
     # ride the east wall
     act.getOutOfStartBox()
     act.crossBumpNorth()
@@ -40,6 +37,7 @@ def main() :
     act.crossBumpNorth()
     act.jettison()
     act.driveIntoWall(10)
+    act.theSpinMove()
     act.theWiggleMove()
     
     # done
