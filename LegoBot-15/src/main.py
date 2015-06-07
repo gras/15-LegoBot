@@ -11,6 +11,8 @@ def main() :
     #return
 
     act.init()
+    act.lineFollow() #make it be on a time limit. kind of worksish!
+    act.DEBUG()
     
     # ride the east wall
     act.getOutOfStartBox()

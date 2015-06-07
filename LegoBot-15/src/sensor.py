@@ -11,6 +11,9 @@ import time
 import drive
 import actions as act
 from time import sleep
+from constants import topFrontSee, topBackSee
+
+# Camera Code
 
 '''
 def getLargestArea():
@@ -81,6 +84,19 @@ def sortTribble() :
     
     return found
     
+# TopHat Code
 
+def frontHat():
+    if link.analog10(c.topHatFront) > c.topFrontSee:
+        frontHat = 1
+    else:
+        frontHat = 0
+    return frontHat
 
-    
+def backHat():
+    if link.analog10(c.topHatBack) > c.topBackSee:
+        backHat = 1
+    else:
+        backHat = 0
+    return backHat
+

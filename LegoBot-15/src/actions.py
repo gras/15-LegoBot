@@ -60,14 +60,14 @@ def init() :
 
 
     # time.sleep(2)
-    
+    '''
     print "Press the A button to start or the B button to exit"
     while not link.a_button() and not link.b_button():
         pass
     if link.b_button_clicked():
         DEBUG("exited")
     print "thank you!"
-    
+    '''
     # link.wait_for_light(0)
     link.shut_down_in(119.0)
     c.startTime = link.seconds()
@@ -268,6 +268,44 @@ def theSpinMove():
     drive.withStop(100, -100, .5)
     drive.withStop(-50, -80, 2)
     drive.withStop(50, 80, 2)
+
+#SUPERSEED
+
+def lineFollow():
+    timez = time.time()
+    timerz = timez + 20
+    while not link.a_button() and not link.b_button():
+        frontHat = sensor.frontHat()
+        if frontHat:
+            print "***frontYes"
+            drive.withStop(70, 25, .1)
+        else:
+            print "frontNo"
+            drive.withStop(25, 70, .1)
+        
+        backHat = sensor.backHat()
+        if backHat:
+            print "***backYes"
+        else:
+            print "backNo"
+        elapsedTime = (time.time() - timerz)
+        if elapsedTime < 0:
+            break
+        else:
+            pass
+        
+def testFollow():
+    frontHat = sensor.frontHat()
+    if frontHat:
+        print "***frontYes"
+    else:
+        print "frontNo"
+        
+    backHat = sensor.backHat()
+    if backHat:
+        print "***backYes"
+    else:
+        print "backNo"
 
 def pause():
     print "pause"
