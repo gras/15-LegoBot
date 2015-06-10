@@ -4,6 +4,7 @@ Created on Mar 15, 2015
 @author: Dead Robot Society
 '''
 import time 
+import sensor
 import kovan as link
 import constants as c
 
@@ -22,6 +23,28 @@ def withStop( leftSpeed, rightSpeed, driveTime) :
     link.motor( c.mLeft, 0 )
     link.motor( c.mRight, 0 )
 
+def topStopFront(leftSpeed, rightSpeed) :
+    while 1:
+        frontHat = sensor.frontHat()
+        if frontHat:
+            print "***frontYes"
+            break
+        else:
+            print "frontNo"        
+            link.motor( c.mLeft, leftSpeed )
+            link.motor( c.mRight, rightSpeed )
+            
+def topStopBack(leftSpeed, rightSpeed) :
+    while 1:
+        backHat = sensor.backHat()
+        if backHat:
+            print "***backYes"
+            break
+        else:
+            print "backNo"        
+            link.motor( c.mLeft, leftSpeed )
+            link.motor( c.mRight, rightSpeed )
+            
 def testGates():
     print "testing left gate"
     testOpenGate(c.leftGate)

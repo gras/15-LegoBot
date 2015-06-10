@@ -100,3 +100,10 @@ def backHat():
         backHat = 0
     return backHat
 
+def findTape():
+    link.camera_update()
+    if link.get_object_area( c.chanPink, 0 ) >= c.blobSize:
+        tape = 1
+    else:
+        tape = 0
+    return tape

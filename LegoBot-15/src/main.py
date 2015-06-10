@@ -11,7 +11,20 @@ def main() :
     #return
 
     act.init()
-    act.lineFollow() #make it be on a time limit. kind of worksish!
+    act.driveIntoWall(10)
+    act.theSpinMove()
+    act.theWiggleMove()
+    act.lineUsUp()
+    #act.DEBUG("are were there?")
+    act.lineFollow() 
+    act.getUsSet()
+    act.DEBUG("stop here for now")
+    act.driveIntoWall(7)
+    act.startToTurn()
+    act.driveIntoWall(5)
+
+    # ride the west wall
+    act.getOutOfSecondBox()
     act.DEBUG()
     
     # ride the east wall

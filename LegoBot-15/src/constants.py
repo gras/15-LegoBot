@@ -30,10 +30,11 @@ topFrontSee = 100 #550
 topBackSee = 100 #700
 #------------------------------------ 
 
-# color channels    0 = green     1 = red    2 = gold
+# color channels    0 = green     1 = red    2 = gold    3 = pink
 chanGreen = 0
 chanRed = 1 
 chanGold = 2
+chanPink = 3
  
 # servo positions
 clapperWide = 100
@@ -63,6 +64,7 @@ gateClose = 900 #480
 
 # camera
 blobSize = 2000
+tapeBlobSize = 500
 
 startTime = 0
 

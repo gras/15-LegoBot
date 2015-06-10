@@ -14,6 +14,7 @@ import drive
 import servo
 import sensor
 import time
+from constants import clapperTight
 
  
 
@@ -272,40 +273,62 @@ def theSpinMove():
 #SUPERSEED
 
 def lineFollow():
-    timez = time.time()
-    timerz = timez + 20
+    servo.moveClapper(c.clapperTight, 10)
+    timez = link.seconds() + 10
+    while not link.a_button() and not link.b_button() and link.seconds() < timez:
+        '''
+        frontHat = sensor.frontHat()
+        if frontHat:
+            print "***frontYes"
+            drive.noStop(100, 25, 0)
+        else:
+            print "frontNo"
+            drive.noStop(25, 50, 0)
+        '''
+        backHat = sensor.backHat()
+        if backHat:
+            print "***backYes"
+            drive.noStop(-100, -25, 0)
+        else:
+            print "backNo"
+            drive.noStop(-25, -50, 0)
+        sensor.findTape()
+        tape = sensor.findTape()
+        if tape:
+            drive.withStop(-50, -65, 7)
+            break
+        else:
+            pass
+
+def lineUsUp():
+    servo.moveClapper(clapperTight, 10)
+    drive.holdGateClosed(c.rightGate)
+    drive.withStop(-10, -100, 2.5)
+    drive.withStop(50, -50, 1.25)
+    drive.withStop(-50, -50, 5)
+    drive.holdGateOpen(c.rightGate)
+    drive.withStop(60, 30, 3)
+    drive.holdGateClosed(c.rightGate)
+    drive.topStopFront(50, 50)
+    drive.topStopBack(50, -50)
+
+def getUsSet():
+    drive.withStop(-50, 50, 1.25)
+    drive.withStop(50, 50, 3)
+        
+def testFollow():
     while not link.a_button() and not link.b_button():
         frontHat = sensor.frontHat()
         if frontHat:
             print "***frontYes"
-            drive.withStop(70, 25, .1)
         else:
             print "frontNo"
-            drive.withStop(25, 70, .1)
         
         backHat = sensor.backHat()
         if backHat:
             print "***backYes"
         else:
             print "backNo"
-        elapsedTime = (time.time() - timerz)
-        if elapsedTime < 0:
-            break
-        else:
-            pass
-        
-def testFollow():
-    frontHat = sensor.frontHat()
-    if frontHat:
-        print "***frontYes"
-    else:
-        print "frontNo"
-        
-    backHat = sensor.backHat()
-    if backHat:
-        print "***backYes"
-    else:
-        print "backNo"
 
 def pause():
     print "pause"
