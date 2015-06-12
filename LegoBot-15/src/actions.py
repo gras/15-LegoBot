@@ -20,11 +20,11 @@ from constants import clapperTight
 
 def init() :
     # fix crash caused by unclean camera calls
-    '''
+    
     from subprocess import call
     call(["killall","python"])
     print "cleaned camera code"
-    '''
+    
     # set print to unbuffered
     sys.stdout = os.fdopen(sys.stdout.fileno(),'w',0)
     
@@ -34,23 +34,15 @@ def init() :
     if not link.camera_open():
         DEBUG("camera failed to open") 
     
-    print "testing camera"
-    link.camera_update()
-    time.sleep(.1)
-    link.camera_update()
+    sensor.cameraTest
     
-    servo.testServo() 
+    servo.testServo()
     
-    print "testing camera"
-    link.camera_update()
-    time.sleep(.1)
-    link.camera_update()
+    sensor.cameraTest
+    
     drive.testGates()
     
-    print "testing camera"
-    link.camera_update()
-    time.sleep(.1)
-    link.camera_update()
+    sensor.cameraTest
     
     link.disable_servos()
     # print "camera code is cleaned!"
@@ -59,16 +51,14 @@ def init() :
     else :
         print "Running Clone"
 
-
-    # time.sleep(2)
-    '''
+    
     print "Press the A button to start or the B button to exit"
     while not link.a_button() and not link.b_button():
         pass
     if link.b_button_clicked():
         DEBUG("exited")
     print "thank you!"
-    '''
+    
     # link.wait_for_light(0)
     link.shut_down_in(119.0)
     c.startTime = link.seconds()
@@ -116,15 +106,7 @@ def sortAndGo(num):
             print "poms sorted", pomsSorted
         else:
             print "wiggle"
-            servo.moveSorter(c.sorterRightish, 100)
-            servo.moveSorter(c.sorterLeftish, 100)
-            servo.moveSorter(c.sorterCenter, 100)
-            servo.moveClapper(c.clapperDrive, 200)
-            drive.withStop(-50, 25, .5)
-            servo.moveClapper(c.clapperOpen, 150) #200 #was closed
-            drive.withStop(50, -25, .65)
-            drive.noStop( 55, 50, .3)
-            servo.moveClapper(c.clapperClosed)
+            servo.sortTribbles(10)
             # DEBUG("Stop")
         drive.noStop( 55, 50, .5)
     sensor.sortTribble()
@@ -141,18 +123,12 @@ def driveIntoWall(var):
 
 def startToTurn():
     link.set_servo_position(c.clapper, c.clapperTight)  
-    '''for _ in range(3):
-        drive.withStop(0, -100, .5)
-        drive.withStop(-80, 0, .5)'''
-    '''drive.withStop(0, 50, .5)
-    drive.withStop(50, 50, 1)
-    drive.withStop(0, 85, 1.5)'''
     drive.withStop(-50, -50, 1)
     drive.withStop(-50, 0, .7)
     drive.withStop(0, 100, 1.2)
     drive.openGate(c.rightGate)
       
-def getOutOfSecondBox(): 
+def getOutOfFarBox(): 
     # drive.withStop(-50, -50, 1)
     # drive.withStop(0, 65, 2.5)
     drive.withStop(-50, -50, 1)
@@ -165,27 +141,9 @@ def getOutOfSecondBox():
     drive.closeGate(c.rightGate)
     drive.withStop(50, 50, 1.5) #was 4 
 
-def getOutOfThirdBox():
-    '''
-    drive.holdGateClosed(c.rightGate)
-    drive.withStop(-50, -50, 1.5)
-    drive.withStop(-20, 80, .5)
-    drive.withStop(0, 100, 1.5)
-    # servo.moveClapper (c.clapperWide, 50)
-    # drive.withStop(0, 50, 2.5)
+def getOutOfStartBox2():
     
-    if c.isPrime:
-        drive.withStop(70, 50, 2.65)
-        drive.withStop(50, 50, 1.5) #was 4 
-    
-    else:
-        drive.withStop(0, 100, .5)
-        drive.withStop(70, 50, 2.65)
-        drive.withStop(50, 60, 1.5)
-    
-    drive.closeGate(c.rightGate)
-    # drive.withStop(50, 50, 4)
-    '''
+    # The series of turns that gets us out of the start box for the second time
     
     drive.withStop(-50, -50, 1)
     drive.withStop(-50, 0, .7)
@@ -199,21 +157,7 @@ def getOutOfThirdBox():
     
 def startToTurnTwo():
     # back out of corner
-    '''
-    for _ in range(3):
-        servo.moveClapper (c.clapperTight, 50)
-        drive.withStop(0, -100, .5)
-        drive.withStop(-80, 0, .5)
-    drive.withStop(0, 50, .5)
-    drive.withStop(50, 50, 1)
-    drive.withStop(0, 85, 1.5)
-    drive.withStop(-30, 30, .7)
-    # drive backwards into wall
-    drive.withStop(-30, -30, 1)
-    drive.withStop(0, -60, 1.5)
-    drive.holdGateOpen(c.leftGate)
-    drive.withStop(60, 20, 2)
-    '''
+    
     servo.moveClapper (c.clapperTight, 50)
     drive.withStop(-50, -50, 1)
     drive.withStop(-50, 0, .7)
@@ -231,16 +175,7 @@ def jettison():
         find = sensor.sortTribble()
         if find:
             print "pom found"
-            servo.moveSorter(c.sorterRightish, 100)
-            servo.moveSorter(c.sorterLeftish, 100)
-            servo.moveSorter(c.sorterCenter, 100)
-            servo.moveClapper(c.clapperDrive, 200)
-            drive.withStop(-50, 25, .5)
-            servo.moveClapper(c.clapperOpen, 150)
-            drive.withStop(50, -25, .65)
-            drive.noStop( 55, 50, .3)
-            servo.moveClapper(c.clapperClosed)
-            drive.withStop(20, 20, .2)
+            servo.sortTribbles(10)
         else:
             print "all good"
             break 
@@ -300,6 +235,7 @@ def lineFollow():
         else:
             pass
 
+# uses the tophat code to line
 def lineUsUp():
     servo.moveClapper(clapperTight, 10)
     drive.holdGateClosed(c.rightGate)
@@ -307,11 +243,12 @@ def lineUsUp():
     drive.withStop(50, -50, 1.25)
     drive.withStop(-50, -50, 5)
     drive.holdGateOpen(c.rightGate)
-    drive.withStop(60, 30, 3)
+    drive.withStop(95, 30, 3)
     drive.holdGateClosed(c.rightGate)
     drive.topStopFront(50, 50)
     drive.topStopBack(50, -50)
 
+# still unsure as to the final use
 def getUsSet():
     drive.withStop(-50, 50, 1.25)
     drive.withStop(50, 50, 3)

@@ -7,25 +7,10 @@ Created on Mar 14, 2015
 import actions as act
 
 def main() :
-    #act.test()
+    #act.test()                                    Programming score out of 10: ________
     #return
 
     act.init()
-    act.driveIntoWall(10)
-    act.theSpinMove()
-    act.theWiggleMove()
-    act.lineUsUp()
-    #act.DEBUG("are were there?")
-    act.lineFollow() 
-    act.getUsSet()
-    act.DEBUG("stop here for now")
-    act.driveIntoWall(7)
-    act.startToTurn()
-    act.driveIntoWall(5)
-
-    # ride the west wall
-    act.getOutOfSecondBox()
-    act.DEBUG()
     
     # ride the east wall
     act.getOutOfStartBox()
@@ -34,11 +19,11 @@ def main() :
     act.driveIntoWall(7)
     
     # ride the m wall
-    act.startToTurn()
-    act.driveIntoWall(5)
+    act.startToTurn() # to the east
+    act.driveIntoWall(5)  # east wall
 
     # ride the west wall
-    act.getOutOfSecondBox()
+    act.getOutOfFarBox()
     act.crossBumpSouth()
     act.sortAndGo(6)
     act.driveIntoWall(7)
@@ -48,7 +33,7 @@ def main() :
     act.driveIntoWall(5)
     
     # ride the east wall again 
-    act.getOutOfThirdBox()
+    act.getOutOfStartBox2()
     act.crossBumpNorth()
     act.jettison()
     act.driveIntoWall(10)

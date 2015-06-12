@@ -6,20 +6,21 @@ Created on Mar 15, 2015
 import kovan as link
 
 # servo ports
-kicker = 3
 sorter = 0
 clapper = 1
+kicker = 3
 
 # motor ports
-mLeft = 2
 mRight = 0
+mLeft = 2
+
 # gates are by robot's left and right
-leftGate = 3
 rightGate = 1
+leftGate = 3
 
 # digital ports
-clonePort = 15
 bumper = 10
+clonePort = 15
 
 # analog ports
 topHatFront = 3
@@ -39,9 +40,9 @@ chanPink = 3
 # servo positions
 clapperWide = 100
 clapperDrive = 150
-clapperOpen = 400 #375
-clapperParallel = 750
+clapperOpen = 400 
 clapperClosed = 700
+clapperParallel = 750
 clapperTight = 915
 
 # sorter positions
@@ -52,19 +53,12 @@ sorterRightish = ((sorterRight-sorterCenter)/2)+sorterCenter
 sorterLeftish = sorterCenter-((sorterCenter-sorterCenter)/2)
 
 # kicker positions
-# kickerBack = 400 #650
 kickerReady = 900 #1300
 kickerOut = 1600 #1850
 
-# gate positions
-"""
-gateOpen = 1100 #1050
-gateClose = 900 #480
-"""
-
 # camera
 blobSize = 2000
-tapeBlobSize = 500
+tapeBlobSize = 500 #superseeding line follow only
 
 startTime = 0
 
@@ -87,16 +81,9 @@ if isClone:
     sorterCenter = 1020 #840
     
     # kicker positions
-    # kickerBack = 400 #650
     kickerReady = 500 #400
     kickerOut = 1100 #1850
  
-    # gate positions
-    gateOpen = 1000 #850 
-    gateClose = 800 #480
-    
-    # camera
-    blobSize = 2000
-    
+   
     
     
