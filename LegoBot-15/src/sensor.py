@@ -9,9 +9,7 @@ import constants as c
 import servo
 import time
 import drive
-import actions as act
-from time import sleep
-from constants import topFrontSee, topBackSee
+
 
 # Camera Code
 def sortAndKick():
@@ -24,7 +22,7 @@ def sortAndKick():
     servo.moveSorter( c.sorterCenter ,200)
     servo.moveKicker( c.kickerReady, 2000 )
     time.sleep(0.1)#was .5
-    found = 1
+   
 
 def sortTribble() :
     print "sortTribble"

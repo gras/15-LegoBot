@@ -7,7 +7,7 @@ Created on Mar 14, 2015
 import actions as act
 
 def main() :
-    #act.test()                                    Programming score out of 10: ________
+    #act.test()                       
     #return
 
     act.init()
@@ -17,6 +17,7 @@ def main() :
     act.crossBumpNorth()
     act.sortAndGo(6) # 6 crashes into wall
     act.driveIntoWall(7)
+    act.DEBUG("stop")
     
     # ride the m wall
     act.startToTurn() # to the east
