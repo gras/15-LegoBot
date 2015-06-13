@@ -6,12 +6,15 @@ Created on Mar 14, 2015
 
 import actions as act
 
+
 def main() :
     print "hello"             
     
 
     act.init()
     
+    print act.getSuper()
+        
     # ride the east wall
     act.getOutOfStartBox()
     act.crossBumpNorth()
@@ -27,7 +30,6 @@ def main() :
     act.crossBumpSouth()
     act.sortAndGo(6)
     act.driveIntoWall(7)
-    act.DEBUG("done")
     
     # ride the south wall
     act.startToTurnTwo()
@@ -40,11 +42,13 @@ def main() :
     act.driveIntoWall(10)
     act.theSpinMove()
     act.theWiggleMove()
-    
+    # superseeding experimental WIP code
+    if act.getSuper():
+        act.lineUsUp()
+        act.lineFollow()
+        act.getUsSet()
     # done
     act.shutdown()
-    act.kill()
-    act.DEBUG("Done!")
 
 if __name__ == "__main__":
     # set print to unbuffered

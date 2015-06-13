@@ -4,6 +4,7 @@ Created on Mar 15, 2015
 @author: Dead Robot Society
 '''
 
+superSeeding = 0
 
 import kovan as link
 
@@ -14,10 +15,12 @@ import sensor
 import time
 from constants import clapperTight
 
- 
+def getSuper():
+    global superSeeding
+    return superSeeding
 
 def init():
-    
+    global superSeeding
     print "starting legoBot"
     if not link.camera_open():
         DEBUG("camera failed to open") 
@@ -32,17 +35,22 @@ def init():
         print "Running Prime"
     else :
         print "Running Clone"
-
     
-    print "Press the A button to start or the B button to exit"
-    while not link.a_button() and not link.b_button():
+    shutdown = 119
+    print "Press the A button to start or the B button to exit or the C button for SUPERSEEDING"
+    while not link.a_button() and not link.b_button() and not link.c_button():
         pass
     if link.b_button_clicked():
         DEBUG("exited")
+    elif link.c_button_clicked():
+        print "SUPERSEEDING MODE ACTIVATED"
+        shutdown = 239
+        superSeeding = 1 
     print "thank you!"
-    
+    print "max time =", shutdown 
+
     # link.wait_for_light(0)
-    link.shut_down_in(119.0)
+    link.shut_down_in(shutdown)
     c.startTime = link.seconds()
         
 def getOutOfStartBox() :    
@@ -53,15 +61,14 @@ def getOutOfStartBox() :
     servo.moveClapper (c.clapperWide, 50)
     drive.withStop(50, 50, 4)
     
-    
 def crossBumpNorth():
 
     if c.isPrime:  
         drive.withStop(25, 50, 1.0)
-        servo.moveClapper(c.clapperClosed)
+        servo.moveClapper(c.clapperOpen) #was clapperClosed
         drive.withStop(100, 97, 2.3) 
         servo.moveClapper(c.clapperParallel)  
- 
+
         '''
         drive.withStop(35, 40, 1.0)
         servo.moveClapper(c.clapperClosed)
@@ -71,12 +78,12 @@ def crossBumpNorth():
         '''
     else:
         drive.withStop(25, 50, 1.0)
-        servo.moveClapper(c.clapperClosed)
+        servo.moveClapper(c.clapperOpen)
         drive.withStop(100, 90, 1.60) 
-        servo.moveClapper(c.clapperParallel)  
-    
+        servo.moveClapper(c.clapperParallel)
+ 
 def crossBumpSouth():
-    servo.moveClapper(c.clapperClosed)
+    servo.moveClapper(c.clapperOpen)
     drive.withStop(100, 90, 1.60) 
     servo.moveClapper(c.clapperParallel)
     
@@ -118,9 +125,12 @@ def startToTurn():
 def getOutOfFarBox(): 
     # drive.withStop(-50, -50, 1)
     # drive.withStop(0, 65, 2.5)
-    drive.withStop(-50, -50, 1)
+    if c.isPrime:
+        drive.withStop(-50, -50, 1.66)
+    else:
+        drive.withStop(-50, -50, 1.33)
     drive.withStop(-50, 0, .7)
-    drive.withStop(0, 100, 1.2)
+    drive.withStop(0, 100, 1.7)
     drive.withStop(70, 50, .65)
     servo.moveClapper (c.clapperWide, 50)
     # drive.withStop(0, 50, .25)
@@ -131,17 +141,29 @@ def getOutOfFarBox():
 def getOutOfStartBox2():
     
     # The series of turns that gets us out of the start box for the second time
+    if c.isPrime:
+        drive.withStop(-50, -50, 1)
+        drive.withStop(-50, 0, .7)
+        drive.withStop(-50, 50, .5) 
+        drive.withStop(20, 50, .3)
+        drive.withStop(0, 80, 1)
+        drive.withStop(35, 45, 1.0)
     
-    drive.withStop(-50, -50, 1)
-    drive.withStop(-50, 0, .7)
-    drive.withStop(-50, 50, .5) 
-    drive.withStop(20, 40, .3)
-    drive.withStop(0, 80, .6)
-    drive.withStop(35, 45, 1.0)
+        drive.withStop(40, 40, 1.0)
+        drive.withStop(90, 90, 2)  
+
+    else:
+        drive.withStop(-50, -50, 1)
+        drive.withStop(-50, 0, .7)
+        drive.withStop(-50, 50, .5) 
+        drive.withStop(20, 40, .3)
+        drive.withStop(0, 80, .6)
+        drive.withStop(35, 45, 1.0)
     
-    drive.withStop(40, 40, 1.0)
-    drive.withStop(90, 90, 2)  
-    
+        drive.withStop(40, 40, 1.0)
+        drive.withStop(90, 90, 2)  
+
+
 def startToTurnTwo():
     # back out of corner
     
@@ -162,7 +184,7 @@ def jettison():
         find = sensor.sortTribble()
         if find:
             print "pom found"
-            servo.wiggle(10)
+            servo.wiggle()
         else:
             print "all good"
             break 
@@ -192,7 +214,7 @@ def theSpinMove():
     drive.withStop(-50, -80, 2)
     drive.withStop(50, 80, 2)
 
-#SUPERSEED
+#SUPERSEED - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 def lineFollow():
     servo.moveClapper(c.clapperTight, 10)
@@ -227,7 +249,7 @@ def lineUsUp():
     servo.moveClapper(clapperTight, 10)
     drive.holdGateClosed(c.rightGate)
     drive.withStop(-10, -100, 2.5)
-    drive.withStop(50, -50, 1.25)
+    drive.withStop(50, -65, 1.25)
     drive.withStop(-50, -50, 5)
     drive.holdGateOpen(c.rightGate)
     drive.withStop(95, 30, 3)
@@ -253,6 +275,8 @@ def testFollow():
             print "***backYes"
         else:
             print "backNo"
+            
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 def pause():
     print "pause"
@@ -268,8 +292,5 @@ def shutdown():
     link.ao()
     print "elapsed time:" 
     print link.seconds() - c.startTime
-
-def kill():
-    from subprocess import call
-    call(["killall","python"])
-    print "cleaned camera code"
+    link.camera_close()
+    exit() 

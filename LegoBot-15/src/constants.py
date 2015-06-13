@@ -27,8 +27,8 @@ topHatFront = 3
 topHatBack = 4
 
 # analog readings
-topFrontSee = 100 #550
-topBackSee = 100 #700
+topFrontSee = 200 #550
+topBackSee = 200 #700
 #------------------------------------ 
 
 # color channels    0 = green     1 = red    2 = gold    3 = pink
@@ -78,7 +78,7 @@ if isClone:
     # sorter positions
     sorterLeft = 0
     sorterRight = 2047
-    sorterCenter = 1020 #840
+    sorterCenter = 1065 #1020
     
     # kicker positions
     kickerReady = 500 #400
