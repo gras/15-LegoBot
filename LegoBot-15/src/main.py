@@ -7,8 +7,8 @@ Created on Mar 14, 2015
 import actions as act
 
 def main() :
-    #act.test()                       
-    #return
+    print "hello"             
+    
 
     act.init()
     
@@ -17,7 +17,6 @@ def main() :
     act.crossBumpNorth()
     act.sortAndGo(6) # 6 crashes into wall
     act.driveIntoWall(7)
-    act.DEBUG("stop")
     
     # ride the m wall
     act.startToTurn() # to the east
@@ -28,6 +27,7 @@ def main() :
     act.crossBumpSouth()
     act.sortAndGo(6)
     act.driveIntoWall(7)
+    act.DEBUG("done")
     
     # ride the south wall
     act.startToTurnTwo()
@@ -45,6 +45,10 @@ def main() :
     act.shutdown()
     act.kill()
     act.DEBUG("Done!")
-    
+
 if __name__ == "__main__":
+    # set print to unbuffered
+    import os
+    import sys
+    sys.stdout = os.fdopen(sys.stdout.fileno(),'w',0)
     main()

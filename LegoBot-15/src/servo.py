@@ -58,8 +58,8 @@ def moveServo( servo, endPos, speed=10 ) :
         time.sleep(0.010)
     link.set_servo_position( servo, endPos )
     time.sleep( 0.010 )
-    
-def sortTribbles():
+
+def wiggle():
     moveSorter(c.sorterRightish, 100)
     moveSorter(c.sorterLeftish, 100)
     moveSorter(c.sorterCenter, 100)

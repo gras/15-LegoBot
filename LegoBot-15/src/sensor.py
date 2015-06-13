@@ -12,8 +12,8 @@ import drive
 
 
 # Camera Code
-def sortAndKick():
-    servo.moveSorter( c.sorterLeft, 100 )
+def sortAndKick(direction):
+    servo.moveSorter( direction, 100 )
     drive.withStop(-50, -50, 0.1)   
     time.sleep(.2)
     print "moveKicker"
@@ -30,7 +30,7 @@ def sortTribble() :
     time.sleep(.15)
     link.camera_update()
     print "camera updated"
-    found = 0
+    found = 1
     if link.get_object_area( c.chanGreen, 0 ) >= c.blobSize:
         print "green, y=", link.get_object_center_y(c.chanGreen, 0)
         if link.get_object_center_y(c.chanGreen, 0) >= 90:
@@ -40,7 +40,7 @@ def sortTribble() :
             #act.DEBUG("bad green alignment")\
         print link.get_object_area( c.chanGreen, 0 )
         print "moveSorter"
-        sortAndKick()
+        sortAndKick( c.sorterLeft)
         
         
     elif link.get_object_area(c.chanRed, 0 ) >= c.blobSize or link.get_object_area(c.chanGold, 0 ) >= c.blobSize:
@@ -52,13 +52,11 @@ def sortTribble() :
             print "*******new y=", link.get_object_center_y(c.chanRed, 0)
         print link.get_object_area( c.chanRed, 0 )
         print "moveSorter"  
-        sortAndKick()
+        sortAndKick( c.sorterRight)
         
     else:
         print "nothing found"
         found = 0
-       
-    
     return found
     
 # TopHat Code

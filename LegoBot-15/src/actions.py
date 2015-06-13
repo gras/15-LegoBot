@@ -4,8 +4,6 @@ Created on Mar 15, 2015
 @author: Dead Robot Society
 '''
 
-import os
-import sys
 
 import kovan as link
 
@@ -18,33 +16,17 @@ from constants import clapperTight
 
  
 
-def init() :
-    # fix crash caused by unclean camera calls
-    
-    from subprocess import call
-    call(["killall","python"])
-    print "cleaned camera code"
-    
-    # set print to unbuffered
-    sys.stdout = os.fdopen(sys.stdout.fileno(),'w',0)
+def init():
     
     print "starting legoBot"
-    link.enable_servos()
-    time.sleep (1.0)
     if not link.camera_open():
         DEBUG("camera failed to open") 
     
     sensor.cameraTest
-    
     servo.testServo()
-    
     sensor.cameraTest
-    
     drive.testGates()
-    
     sensor.cameraTest
-    
-    link.disable_servos()
     # print "camera code is cleaned!"
     if c.isPrime :
         print "Running Prime"
@@ -62,7 +44,6 @@ def init() :
     # link.wait_for_light(0)
     link.shut_down_in(119.0)
     c.startTime = link.seconds()
-    link.enable_servos()
         
 def getOutOfStartBox() :    
     drive.holdGateClosed(c.rightGate)
@@ -72,15 +53,22 @@ def getOutOfStartBox() :
     servo.moveClapper (c.clapperWide, 50)
     drive.withStop(50, 50, 4)
     
+    
 def crossBumpNorth():
 
-    if c.isPrime:   
-        # drive.withStop(25, 50, 1.0)
+    if c.isPrime:  
+        drive.withStop(25, 50, 1.0)
+        servo.moveClapper(c.clapperClosed)
+        drive.withStop(100, 97, 2.3) 
+        servo.moveClapper(c.clapperParallel)  
+ 
+        '''
         drive.withStop(35, 40, 1.0)
         servo.moveClapper(c.clapperClosed)
         drive.withStop(90, 90, 1.60) 
         servo.moveClapper(c.clapperParallel)
         drive.withStop(35, 0, .4) 
+        '''
     else:
         drive.withStop(25, 50, 1.0)
         servo.moveClapper(c.clapperClosed)
@@ -106,8 +94,7 @@ def sortAndGo(num):
             print "poms sorted", pomsSorted
         else:
             print "wiggle"
-            servo.sortTribbles(10)
-            # DEBUG("Stop")
+            servo.wiggle()
         drive.noStop( 55, 50, .5)
     sensor.sortTribble()
 
@@ -126,7 +113,7 @@ def startToTurn():
     drive.withStop(-50, -50, 1)
     drive.withStop(-50, 0, .7)
     drive.withStop(0, 100, 1.2)
-    drive.openGate(c.rightGate)
+    drive.holdGateOpen(c.rightGate)
       
 def getOutOfFarBox(): 
     # drive.withStop(-50, -50, 1)
@@ -175,7 +162,7 @@ def jettison():
         find = sensor.sortTribble()
         if find:
             print "pom found"
-            servo.sortTribbles(10)
+            servo.wiggle(10)
         else:
             print "all good"
             break 
