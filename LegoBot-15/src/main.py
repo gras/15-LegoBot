@@ -12,7 +12,7 @@ def main() :
     
 
     act.init()
-    
+    '''
     print act.getSuper()
         
     # ride the east wall
@@ -42,9 +42,11 @@ def main() :
     act.driveIntoWall(10)
     act.theSpinMove()
     act.theWiggleMove()
+    '''
     # superseeding experimental WIP code
     if act.getSuper():
         act.lineUsUp()
+        act.DEBUG("NEIN")
         act.lineFollow()
         act.getUsSet()
     # done

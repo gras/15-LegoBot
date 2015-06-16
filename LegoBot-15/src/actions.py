@@ -252,8 +252,12 @@ def lineUsUp():
     drive.withStop(50, -65, 1.25)
     drive.withStop(-50, -50, 5)
     drive.holdGateOpen(c.rightGate)
-    drive.withStop(95, 30, 3)
+    drive.withStop(50, 0, 2)
+    drive.withStop(70, 70, 3.5)
+    drive.topStopFront(40, 40)
+    DEBUG("NEIN")
     drive.holdGateClosed(c.rightGate)
+    
     drive.topStopFront(50, 50)
     drive.topStopBack(50, -50)
 

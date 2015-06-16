@@ -24,15 +24,13 @@ def withStop( leftSpeed, rightSpeed, driveTime) :
     link.motor( c.mRight, 0 )
 
 def topStopFront(leftSpeed, rightSpeed) :
-    while 1:
-        frontHat = sensor.frontHat()
-        if frontHat:
-            print "***frontYes"
-            break
-        else:
-            print "frontNo"        
-            link.motor( c.mLeft, leftSpeed )
-            link.motor( c.mRight, rightSpeed )
+    print "frontNo"        
+    link.motor( c.mLeft, leftSpeed )
+    link.motor( c.mRight, rightSpeed )
+    while not sensor.frontHat():
+        pass
+        
+            
             
 def topStopBack(leftSpeed, rightSpeed) :
     while 1:
