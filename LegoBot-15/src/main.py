@@ -12,13 +12,16 @@ def main() :
     
 
     act.init()
-    '''
+
     print act.getSuper()
         
     # ride the east wall
     act.getOutOfStartBox()
+   
     act.crossBumpNorth()
+    
     act.sortAndGo(6) # 6 crashes into wall
+    
     act.driveIntoWall(7)
     
     # ride the m wall
@@ -28,7 +31,9 @@ def main() :
     # ride the west wall
     act.getOutOfFarBox()
     act.crossBumpSouth()
+    
     act.sortAndGo(6)
+    
     act.driveIntoWall(7)
     
     # ride the south wall
@@ -37,12 +42,13 @@ def main() :
     
     # ride the east wall again 
     act.getOutOfStartBox2()
+    act.DEBUG("nein")
     act.crossBumpNorth()
     act.jettison()
     act.driveIntoWall(10)
     act.theSpinMove()
     act.theWiggleMove()
-    '''
+
     # superseeding experimental WIP code
     if act.getSuper():
         act.lineUsUp()

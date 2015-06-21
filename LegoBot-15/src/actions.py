@@ -49,7 +49,7 @@ def init():
     print "thank you!"
     print "max time =", shutdown 
 
-    # link.wait_for_light(0)
+    link.wait_for_light(0)
     link.shut_down_in(shutdown)
     c.startTime = link.seconds()
         

@@ -48,7 +48,7 @@ clapperTight = 915
 # sorter positions
 sorterLeft = 0
 sorterRight = 2047
-sorterCenter = 1000 #885 
+sorterCenter = 1050 #1000 
 sorterRightish = ((sorterRight-sorterCenter)/2)+sorterCenter
 sorterLeftish = sorterCenter-((sorterCenter-sorterCenter)/2)
 
