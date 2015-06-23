@@ -42,12 +42,12 @@ def main() :
     
     # ride the east wall again 
     act.getOutOfStartBox2()
-    act.DEBUG("nein")
     act.crossBumpNorth()
     act.jettison()
     act.driveIntoWall(10)
     act.theSpinMove()
     act.theWiggleMove()
+    act.DEBUG("nein")
 
     # superseeding experimental WIP code
     if act.getSuper():
