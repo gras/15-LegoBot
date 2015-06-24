@@ -14,6 +14,7 @@ def main() :
     act.init()
 
     print act.getSuper()
+    
         
     # ride the east wall
     act.getOutOfStartBox()
@@ -47,7 +48,8 @@ def main() :
     act.driveIntoWall(10)
     act.theSpinMove()
     act.theWiggleMove()
-    act.DEBUG("nein")
+    
+    
 
     # superseeding experimental WIP code
     if act.getSuper():
