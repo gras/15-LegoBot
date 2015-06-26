@@ -104,6 +104,7 @@ def sortAndGo(num):
             servo.wiggle()
         drive.noStop( 55, 50, .5)
     sensor.sortTribble()
+    return num - pomsSorted
 
 def driveIntoWall(var):
     # drives forward along a wall until the touch sensor in front bumps into something
@@ -298,3 +299,6 @@ def shutdown():
     print link.seconds() - c.startTime
     link.camera_close()
     exit() 
+
+def finalCloseGate():
+    drive.closeGate(c.leftGate)

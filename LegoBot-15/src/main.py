@@ -21,11 +21,11 @@ def main() :
    
     act.crossBumpNorth()
     
-    act.sortAndGo(6) # 6 crashes into wall
+    pomsNotSorted = act.sortAndGo(6) # 6 crashes into wall
     
     act.driveIntoWall(7)
     
-    # ride the m wall
+    # ride the north wall
     act.startToTurn() # to the east
     act.driveIntoWall(5)  # east wall
 
@@ -33,7 +33,7 @@ def main() :
     act.getOutOfFarBox()
     act.crossBumpSouth()
     
-    act.sortAndGo(6)
+    act.sortAndGo(6 + pomsNotSorted)
     
     act.driveIntoWall(7)
     
@@ -46,8 +46,10 @@ def main() :
     act.crossBumpNorth()
     act.jettison()
     act.driveIntoWall(10)
-    act.theSpinMove()
-    act.theWiggleMove()
+    act.finalCloseGate()
+    #act.theSpinMove()
+    #act.theWiggleMove()
+    
     
     
 
