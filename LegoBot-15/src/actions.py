@@ -13,7 +13,7 @@ import drive
 import servo
 import sensor
 import time
-from constants import clapperTight
+from constants import clapperTight, isPrime
 
 def getSuper():
     global superSeeding
@@ -97,10 +97,7 @@ def sortAndGo(num):
 
 def driveIntoWall(var):
     # drives forward along a wall until the touch sensor in front bumps into something
-    if c.isPrime:
-        drive.noStop(65, 50, .05)
-    else:
-        drive.noStop(65, 50, .02)
+    drive.noStop(65, 50, .05)
     done = link.seconds()+ var
     while link.digital(c.bumper) == 0:
         if link.seconds() > done:
@@ -112,9 +109,10 @@ def startToTurn():
     link.set_servo_position(c.clapper, c.clapperTight)  
     if c.isPrime:
         drive.withStop(-50, -50, 1)
+        drive.withStop(-50, 0, .7)
     else:
-        drive.withStop(-50, -50, 1.3)
-    drive.withStop(-50, 0, .7)
+        drive.withStop(-50, -50, .8)
+        drive.withStop(-50, 0, .5)
     drive.withStop(0, 100, 1.2)
     drive.holdGateOpen(c.rightGate)
       
@@ -295,6 +293,9 @@ def shutdown():
     link.camera_close()
     exit() 
 
-def finalCloseGate():
+def finalStop():
     drive.closeGate(c.leftGate)
     drive.closeGate(c.rightGate)
+    drive.noStop(-50, -50, 1.6)
+    drive.withStop(50, 50, 1.8)
+    drive.closeGate(c.leftGate)

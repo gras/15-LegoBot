@@ -29,13 +29,13 @@ def main() :
     # ride the north wall
     act.startToTurn() # to west east
     act.driveIntoWall(5)  # west wall
-    act.DEBUG("done")
-
+    
     # ride the west wall
     act.getOutOfFarBox()
     act.crossBumpSouth()
     
-    act.sortAndGo(6 + pomsNotSorted)
+    
+    act.sortAndGo(7 + pomsNotSorted)
     
     act.driveIntoWall(7)
     
@@ -43,14 +43,16 @@ def main() :
     act.startToTurnTwo()
     act.driveIntoWall(5)
     
+    
     # ride the east wall again 
     act.getOutOfStartBox2()
     act.crossBumpNorth()
     act.jettison()
     act.driveIntoWall(10)
-    act.finalCloseGate()
+    act.finalStop()
+    act.DEBUG("done")
     #act.theSpinMove()
-    act.theWiggleMove()
+    #act.theWiggleMove()
     
     
     
