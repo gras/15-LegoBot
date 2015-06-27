@@ -63,24 +63,13 @@ def getOutOfStartBox() :
     
 def crossBumpNorth():
 
+    drive.withStop(25, 50, 1.0)
+    servo.moveClapper(c.clapperOpen) #was clapperClosed
     if c.isPrime:  
-        drive.withStop(25, 50, 1.0)
-        servo.moveClapper(c.clapperOpen) #was clapperClosed
         drive.withStop(100, 97, 2.3) 
-        servo.moveClapper(c.clapperParallel)  
-
-        '''
-        drive.withStop(35, 40, 1.0)
-        servo.moveClapper(c.clapperClosed)
-        drive.withStop(90, 90, 1.60) 
-        servo.moveClapper(c.clapperParallel)
-        drive.withStop(35, 0, .4) 
-        '''
     else:
-        drive.withStop(25, 50, 1.0)
-        servo.moveClapper(c.clapperOpen)
         drive.withStop(100, 90, 1.60) 
-        servo.moveClapper(c.clapperParallel)
+    servo.moveClapper(c.clapperParallel)
  
 def crossBumpSouth():
     servo.moveClapper(c.clapperOpen)
@@ -108,7 +97,10 @@ def sortAndGo(num):
 
 def driveIntoWall(var):
     # drives forward along a wall until the touch sensor in front bumps into something
-    drive.noStop(65, 50, .05)
+    if c.isPrime:
+        drive.noStop(65, 50, .05)
+    else:
+        drive.noStop(65, 50, .02)
     done = link.seconds()+ var
     while link.digital(c.bumper) == 0:
         if link.seconds() > done:
@@ -118,7 +110,10 @@ def driveIntoWall(var):
 
 def startToTurn():
     link.set_servo_position(c.clapper, c.clapperTight)  
-    drive.withStop(-50, -50, 1)
+    if c.isPrime:
+        drive.withStop(-50, -50, 1)
+    else:
+        drive.withStop(-50, -50, 1.3)
     drive.withStop(-50, 0, .7)
     drive.withStop(0, 100, 1.2)
     drive.holdGateOpen(c.rightGate)
@@ -302,3 +297,4 @@ def shutdown():
 
 def finalCloseGate():
     drive.closeGate(c.leftGate)
+    drive.closeGate(c.rightGate)

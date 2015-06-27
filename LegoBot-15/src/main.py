@@ -25,9 +25,11 @@ def main() :
     
     act.driveIntoWall(7)
     
+    
     # ride the north wall
-    act.startToTurn() # to the east
-    act.driveIntoWall(5)  # east wall
+    act.startToTurn() # to west east
+    act.driveIntoWall(5)  # west wall
+    act.DEBUG("done")
 
     # ride the west wall
     act.getOutOfFarBox()
@@ -48,7 +50,7 @@ def main() :
     act.driveIntoWall(10)
     act.finalCloseGate()
     #act.theSpinMove()
-    #act.theWiggleMove()
+    act.theWiggleMove()
     
     
     
