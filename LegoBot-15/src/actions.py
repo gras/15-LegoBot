@@ -296,6 +296,7 @@ def shutdown():
 def finalStop():
     drive.closeGate(c.leftGate)
     drive.closeGate(c.rightGate)
+    time.sleep(10)
     drive.noStop(-50, -50, 1.6)
     drive.withStop(50, 50, 1.8)
     drive.closeGate(c.leftGate)
