@@ -35,7 +35,7 @@ def main() :
     act.crossBumpSouth()
     
     
-    act.sortAndGo(7 + pomsNotSorted)
+    act.sortAndGo(6  + pomsNotSorted)
     
     act.driveIntoWall(7)
     
@@ -50,7 +50,7 @@ def main() :
     act.jettison()
     act.driveIntoWall(10)
     act.finalStop()
-    act.DEBUG("done")
+    act.shutdown()
     #act.theSpinMove()
     #act.theWiggleMove()
     
@@ -64,7 +64,7 @@ def main() :
         act.lineFollow()
         act.getUsSet()
     # done
-    act.shutdown()
+    
 
 if __name__ == "__main__":
     # set print to unbuffered
