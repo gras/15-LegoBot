@@ -142,11 +142,6 @@ def getOutOfStartBox2():
         drive.withStop(20, 50, .3)
         drive.withStop(0, 80, 1)
         drive.withStop(35, 45, 1.0)
-    
-        drive.withStop(40, 40, 1.0)
-        drive.withStop(90, 90, 2)
-        time.sleep(7)  
-
     else:
         drive.withStop(-50, -50, 1)
         drive.withStop(-50, 0, .7)
@@ -155,9 +150,9 @@ def getOutOfStartBox2():
         drive.withStop(0, 80, .6)
         drive.withStop(35, 45, 1.0)
     
-        drive.withStop(40, 40, 1.0)
-        drive.withStop(90, 90, 2)
-        time.sleep(7)  
+    drive.withStop(40, 40, 1.0)
+    drive.withStop(90, 90, 2)
+    time.sleep(10)  
     
 
 def startToTurnTwo():
@@ -298,7 +293,7 @@ def shutdown():
 def finalStop():
     drive.closeGate(c.leftGate)
     drive.closeGate(c.rightGate)
-    time.sleep(7)
+    time.sleep(1)
     drive.noStop(-50, -50, 1.6)
     drive.withStop(50, 50, 1.8)
     drive.closeGate(c.leftGate)
