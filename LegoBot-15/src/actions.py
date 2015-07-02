@@ -64,13 +64,14 @@ def getOutOfStartBox() :
 def crossBumpNorth():
 
     drive.withStop(25, 50, 1.0)
+    
     servo.moveClapper(c.clapperOpen) #was clapperClosed
     if c.isPrime:  
-        drive.withStop(100, 97, 2.3) 
+        drive.withStop(100, 100, 2.3) 
     else:
         drive.withStop(100, 90, 1.60) 
     servo.moveClapper(c.clapperParallel)
- 
+    
 def crossBumpSouth():
     servo.moveClapper(c.clapperOpen)
     drive.withStop(100, 90, 1.60) 
@@ -125,6 +126,7 @@ def getOutOfFarBox():
         drive.withStop(-50, -50, 1.33)
     drive.withStop(-50, 0, .7)
     drive.withStop(0, 100, 1.7)
+    DEBUG("farm")
     drive.withStop(70, 50, .65)
     servo.moveClapper (c.clapperWide, 50)
     # drive.withStop(0, 50, .25)
@@ -149,7 +151,6 @@ def getOutOfStartBox2():
         drive.withStop(20, 40, .3)
         drive.withStop(0, 80, .6)
         drive.withStop(35, 45, 1.0)
-    
     drive.withStop(40, 40, 1.0)
     drive.withStop(90, 90, 2)
     time.sleep(10)  
@@ -281,19 +282,16 @@ def DEBUG( msg = "DEBUG" ) :
     link.ao()
     print msg
     link.camera_close()
-    exit()
-
-def shutdown():
-    link.ao()
     print "elapsed time:" 
     print link.seconds() - c.startTime
-    link.camera_close()
-    exit() 
+    exit()
+
+
 
 def finalStop():
     drive.closeGate(c.leftGate)
     drive.closeGate(c.rightGate)
-    time.sleep(1)
     drive.noStop(-50, -50, 1.6)
     drive.withStop(50, 50, 1.8)
     drive.closeGate(c.leftGate)
+    drive.holdGateOpen(c.rightGate)

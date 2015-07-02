@@ -50,7 +50,7 @@ def main() :
     act.jettison()
     act.driveIntoWall(10)
     act.finalStop()
-    act.shutdown()
+    act.DEBUG("done")
     #act.theSpinMove()
     #act.theWiggleMove()
     
