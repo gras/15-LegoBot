@@ -15,6 +15,10 @@ import sensor
 import time
 from constants import clapperTight, isPrime
 
+def waitForTime(timeToGo):
+    while link.seconds() - c.startTime < timeToGo:
+        pass
+
 def getSuper():
     global superSeeding
     return superSeeding
@@ -124,10 +128,11 @@ def getOutOfFarBox():
         drive.withStop(-50, -50, 1.66)
     else:
         drive.withStop(-50, -50, 1.33)
-    drive.withStop(-50, 0, .7)
-    drive.withStop(0, 100, 1.7)
-    DEBUG("farm")
-    drive.withStop(70, 50, .65)
+    drive.withStop(-50, 0, .7) # before turn
+    drive.withStop(0, 100, 1.7) 
+    drive.withStop(70, 50, .65)# Turned
+    waitForTime(56)
+
     servo.moveClapper (c.clapperWide, 50)
     # drive.withStop(0, 50, .25)
     drive.withStop(70, 50, 2)

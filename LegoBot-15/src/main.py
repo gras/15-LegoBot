@@ -38,7 +38,7 @@ def main() :
     act.sortAndGo(6  + pomsNotSorted)
     
     act.driveIntoWall(7)
-    
+    act.DEBUG("Jshu")
     # ride the south wall
     act.startToTurnTwo()
     act.driveIntoWall(5)
