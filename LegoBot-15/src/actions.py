@@ -131,7 +131,8 @@ def getOutOfFarBox():
     drive.withStop(-50, 0, .7) # before turn
     drive.withStop(0, 100, 1.7) 
     drive.withStop(70, 50, .65)# Turned
-    waitForTime(56)
+    
+    waitForTime(55)
 
     servo.moveClapper (c.clapperWide, 50)
     # drive.withStop(0, 50, .25)
@@ -158,7 +159,7 @@ def getOutOfStartBox2():
         drive.withStop(35, 45, 1.0)
     drive.withStop(40, 40, 1.0)
     drive.withStop(90, 90, 2)
-    time.sleep(10)  
+     
     
 
 def startToTurnTwo():
